@@ -171,6 +171,7 @@ require('packer').startup(function(use)
       require("projections").setup({
         workspaces = {
           { "~/code",        { ".git" } },
+          { "~/code/redcanary",        { ".git" } },
           { "~/code/neovim", { ".git" } },
         },
       })
