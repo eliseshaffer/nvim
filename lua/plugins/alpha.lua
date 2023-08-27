@@ -9,7 +9,7 @@ local function button(sc, txt, keybind, keybind_opts)
 end
 
 local function footer()
-  local total_plugins = #vim.tbl_keys(packer_plugins)
+  local total_plugins = require("lazy").stats().count
   local date = os.date("%m-%d-%Y")
   local time = os.date("%H:%M:%S")
   return {

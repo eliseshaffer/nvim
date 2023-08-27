@@ -69,8 +69,8 @@ vim.cmd([[
 -- Plugin Configs
 --
 -- -------------------------------------------------------------------------------------------
+-- require('lazy_config')
 require('plugins')
-require('plugins.treesitter')
 require('lsp')
 require('keymap')
 -- require('tabline')
