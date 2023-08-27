@@ -170,39 +170,78 @@ local plugins = {
       }
     end
   },
-  { 'neovim/nvim-lspconfig' },
-  -- { 'weilbith/nvim-code-action-menu', cmd = 'CodeActionMenu' },
-  -- { 'alexaandru/nvim-lspupdate' },
-  -- -- { 'hrsh7th/nvim-cmp',               config = function() require 'plugins.nvim-cmp' end },
   {
-    "L3MON4D3/LuaSnip",
-    -- follow latest release.
-    version = "2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-    -- install jsregexp (optional!).
-    build = "make install_jsregexp",
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v2.x',
     dependencies = {
-      "rafamadriz/friendly-snippets"
+      -- LSP Support
+      { 'neovim/nvim-lspconfig' },             -- Required
+      { 'williamboman/mason.nvim' },           -- Optional
+      { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+
+      -- Autocompletion
+      { 'hrsh7th/nvim-cmp' },     -- Required
+      { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+      { 'saadparwaiz1/cmp_luasnip' },
+      {
+        'L3MON4D3/LuaSnip',
+        dependencies =
+        { 'rafamadriz/friendly-snippets' },
+      },  -- Required
     },
     config = function()
-      vim.cmd [[
-        " press <Tab> to expand or jump in a snippet. These can also be mapped separately
-        " via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
-        imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'
-        " -1 for jumping backwards.
-        inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
+      local lsp = require('lsp-zero').preset({})
 
-        snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
-        snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
+      lsp.on_attach(function(client, bufnr)
+        -- see :help lsp-zero-keybindings
+        -- to learn the available actions
+        lsp.default_keymaps({ buffer = bufnr })
+      end)
 
-        " For changing choices in choiceNodes (not strictly necessary for a basic setup).
-        imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
-        smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
-      ]]
+      -- (Optional) Configure lua language server for neovim
+      require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+
+      lsp.setup()
+      -- Make sure you setup `cmp` after lsp-zero
+
+      local cmp = require('cmp')
+      local luasnip = require('luasnip')
+      local cmp_action = require('lsp-zero').cmp_action()
+      local check_backspace = function()
+        local col = vim.fn.col "." - 1
+        return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+      end
+
+      require('luasnip.loaders.from_vscode').lazy_load()
+
+      cmp.setup({
+        sources = {
+          { name = 'nvim_lsp' },
+          { name = 'luasnip' },
+          -- { name = 'friendly-snippets'},
+        },
+        mapping = {
+          ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+          ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+          ["<Tab>"] = cmp.mapping(function(fallback)
+              if luasnip.expandable() then
+                luasnip.expand()
+              elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+              elseif check_backspace() then
+                fallback()
+              else
+                fallback()
+              end
+          end, {
+            "i",
+            "s",
+          }),
+          ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
+        }
+      })
     end
   },
-  -- -- { 'saadparwaiz1/cmp_luasnip' },
-  -- { 'hrsh7th/cmp-nvim-lsp' },
-  -- { 'rafamadriz/friendly-snippets' },
   {
     'windwp/nvim-autopairs',
     config = function()
