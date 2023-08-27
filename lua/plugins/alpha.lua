@@ -53,7 +53,7 @@ dashboard.section.buttons.val = {
   button("f", "  Find file", ":Telescope find_files<CR>"),
   button("t", "󰙅  File Tree", ":Neotree toggle<CR>"),
   button("p", "  Plugins", ":e ~/.config/nvim/lua/plugins.lua<CR>"),
-  button("u", "  Sync plugins", ":PackerSync<CR>"),
+  button("u", "  Sync plugins", ":Lazy sync<CR>"),
   button("q", "󰗼  Quit", "<Cmd>qa<CR>"),
   button("l", "λ  Update laguage servers", ":LspUpdate<CR>")
 }
