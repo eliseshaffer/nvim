@@ -20,7 +20,7 @@ local plugins = {
     branch = "v2.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim",
     },
     config = function()
@@ -229,7 +229,7 @@ local plugins = {
           ['<C-b>'] = cmp_action.luasnip_jump_backward(),
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
-              cmp.confirm({select = true})
+              cmp.confirm({ select = true })
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
             elseif check_backspace() then
@@ -294,7 +294,13 @@ local plugins = {
   },
   { "pocco81/auto-save.nvim" },
   { 'ur4ltz/move.nvim' },
-  { 'preservim/nerdcommenter' },
+  {
+    'numToStr/Comment.nvim',
+    opts = {
+      -- add any options here
+    },
+    lazy = false,
+  },
   { 'preservim/vim-pencil' },
   {
     "ellisonleao/glow.nvim",
