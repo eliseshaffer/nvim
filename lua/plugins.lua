@@ -228,8 +228,8 @@ local plugins = {
           ['<C-f>'] = cmp_action.luasnip_jump_forward(),
           ['<C-b>'] = cmp_action.luasnip_jump_backward(),
           ["<Tab>"] = cmp.mapping(function(fallback)
-            if luasnip.expandable() then
-              luasnip.expand()
+            if cmp.visible() then
+              cmp.confirm({select = true})
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
             elseif check_backspace() then
