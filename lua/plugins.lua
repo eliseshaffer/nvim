@@ -63,8 +63,12 @@ local plugins = {
       })
     end,
   },
+  { "folke/which-key.nvim", },
   {
-    "folke/which-key.nvim",
+    'fgheng/winbar.nvim',
+    config = function()
+      require("plugins.winbar")
+    end
   },
   { "petertriho/nvim-scrollbar", config = function() require("scrollbar").setup() end },
   {
@@ -98,9 +102,9 @@ local plugins = {
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function() require 'plugins.gitsigns' end
   },
-  { 'nanozuki/tabby.nvim',       config = function() require('plugins.tabby') end },
+  { 'nanozuki/tabby.nvim',   config = function() require('plugins.tabby') end },
   { 'sickill/vim-pasta' },
-  { 'karb94/neoscroll.nvim',     config = function() require('neoscroll').setup() end },
+  { 'karb94/neoscroll.nvim', config = function() require('neoscroll').setup() end },
   { 'ryanoasis/vim-devicons' },
 
   -- ---------------------------------------------------------------------------
@@ -187,7 +191,7 @@ local plugins = {
         'L3MON4D3/LuaSnip',
         dependencies =
         { 'rafamadriz/friendly-snippets' },
-      },  -- Required
+      }, -- Required
     },
     config = function()
       local lsp = require('lsp-zero').preset({})
@@ -224,20 +228,19 @@ local plugins = {
           ['<C-f>'] = cmp_action.luasnip_jump_forward(),
           ['<C-b>'] = cmp_action.luasnip_jump_backward(),
           ["<Tab>"] = cmp.mapping(function(fallback)
-              if luasnip.expandable() then
-                luasnip.expand()
-              elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-              elseif check_backspace() then
-                fallback()
-              else
-                fallback()
-              end
+            if luasnip.expandable() then
+              luasnip.expand()
+            elseif luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
+            elseif check_backspace() then
+              fallback()
+            else
+              fallback()
+            end
           end, {
             "i",
             "s",
           }),
-          ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
         }
       })
     end

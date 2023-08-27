@@ -48,5 +48,6 @@
   "vim-polyglot": { "branch": "master", "commit": "bc8a81d3592dab86334f27d1d43c080ebf680d42" },
   "vim-rbs": { "branch": "main", "commit": "9a151b1eeb712021c824788c54a5c1e67df8c669" },
   "vim-test": { "branch": "master", "commit": "7585ad2aa2dc8d4ffef0739a02cad8a30d75bfbb" },
-  "which-key.nvim": { "branch": "main", "commit": "7ccf476ebe0445a741b64e36c78a682c1c6118b7" }
+  "which-key.nvim": { "branch": "main", "commit": "7ccf476ebe0445a741b64e36c78a682c1c6118b7" },
+  "winbar.nvim": { "branch": "main", "commit": "13739fdb31be51a1000486189662596f07a59a31" }
 }
