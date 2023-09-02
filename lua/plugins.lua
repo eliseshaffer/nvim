@@ -66,6 +66,9 @@ local plugins = {
   { "folke/which-key.nvim", },
   {
     'fgheng/winbar.nvim',
+    dependencies = {
+      "SmiteshP/nvim-gps",
+    },
     config = function()
       require("plugins.winbar")
     end
