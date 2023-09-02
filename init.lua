@@ -70,6 +70,6 @@ vim.cmd([[
 --
 -- -------------------------------------------------------------------------------------------
 require('plugins')
-require('lsp')
+-- require('lsp')
 require('keymap')
 -- require('tabline')

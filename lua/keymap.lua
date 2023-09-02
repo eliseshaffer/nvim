@@ -60,7 +60,7 @@ key('n', '<leader>cD', ':lua vim.lsp.buf.declaration()<CR>',
 key('n', '<leader>cr', ':lua vim.lsp.buf.references()<CR>', { noremap = true, silent = true, desc = "List References" })
 key('n', '<leader>ci', ':lua vim.lsp.buf.implementation()<CR>',
   { noremap = true, silent = true, desc = "Goto Implementation" })
-key('n', '<leader>cf', ':lua vim.lsp.buf.format({ async = true})<CR>',
+key('n', '<leader>cf', ':LspZeroFormat<CR>',
   { noremap = true, silent = true, desc = "Format File" })
 key('n', '<C-k>', ':lua vim.diagnostic.open_float()<CR>',
   { noremap = true, silent = true, desc = "Show Line diagnostics" })
