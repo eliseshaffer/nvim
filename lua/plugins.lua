@@ -266,9 +266,9 @@ local plugins = {
     config = function()
       require("projections").setup({
         workspaces = {
-          { "~/code",        { ".git" } },
-          { "~/code/redcanary",        { ".git" } },
-          { "~/code/neovim", { ".git" } },
+          { "~/code",           { ".git" } },
+          { "~/code/redcanary", { ".git" } },
+          { "~/code/neovim",    { ".git" } },
         },
       })
 
