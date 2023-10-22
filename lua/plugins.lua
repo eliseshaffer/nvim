@@ -248,6 +248,12 @@ local plugins = {
       require('nvim-autopairs').setup()
     end
   },
+  {
+    'Djancyp/better-comments.nvim',
+    config = function()
+      require('better-comment').Setup()
+    end
+  },
 
   -- ---------------------------------------------------------------------------
   -- Misc. Utilities
