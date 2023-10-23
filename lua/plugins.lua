@@ -65,9 +65,9 @@ local plugins = {
   },
   { "folke/which-key.nvim", },
   {
-    'fgheng/winbar.nvim',
+    'mauricekraus/winbar.nvim',
     dependencies = {
-      "SmiteshP/nvim-gps",
+      "SmiteshP/nvim-navic",
     },
     config = function()
       require("plugins.winbar")
@@ -177,6 +177,7 @@ local plugins = {
       { 'neovim/nvim-lspconfig' },             -- Required
       { 'williamboman/mason.nvim' },           -- Optional
       { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+      { "SmiteshP/nvim-navic" },
 
       -- Autocompletion
       { 'hrsh7th/nvim-cmp' },     -- Required
@@ -190,11 +191,13 @@ local plugins = {
     },
     config = function()
       local lsp = require('lsp-zero').preset({})
+      local navic = require('nvim-navic')
 
       lsp.on_attach(function(client, bufnr)
         -- see :help lsp-zero-keybindings
         -- to learn the available actions
         lsp.default_keymaps({ buffer = bufnr })
+        navic.attach(client, bufnr)
       end)
 
       -- (Optional) Configure lua language server for neovim
