@@ -131,6 +131,10 @@ local plugins = {
     config = function() require 'plugins.neogit' end
   },
   { 'sindrets/diffview.nvim',      dependencies = 'nvim-lua/plenary.nvim' },
+  {
+    'ldelossa/gh.nvim',
+    dependencies = { { 'ldelossa/litee.nvim' } }
+  },
   'knsh14/vim-github-link',
 
   -- ---------------------------------------------------------------------------
