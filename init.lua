@@ -55,6 +55,11 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   command = "setlocal ft=eruby.html"
 })
 
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.html.erb",
+  command = "setlocal ft=eruby.html"
+})
+
 vim.api.nvim_create_autocmd({ "CursorHold" }, {
   pattern = "*",
   command = "checktime"
