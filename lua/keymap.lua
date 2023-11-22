@@ -130,6 +130,8 @@ wk.register({
     r = "Remote"
   },
   c = "Code",
-  w = "Window"
+  w = "Window",
+  d = "Darklight",
+  k = "Darklight"
 }, { prefix = "<leader>" })
 
