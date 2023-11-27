@@ -3,6 +3,9 @@ local neogit = require("neogit")
 neogit.setup({
   kind = "vsplit",
   disable_context_highlighting = true,
+  commit_editor = {
+    kind = "split",
+  },
   commit_popup = {
     kind = "split",
   },
