@@ -261,6 +261,7 @@ local plugins = {
       require('better-comment').Setup()
     end
   },
+  'tpope/vim-rails',
 
   -- ---------------------------------------------------------------------------
   -- Misc. Utilities
