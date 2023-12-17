@@ -207,7 +207,6 @@ local plugins = {
       -- (Optional) Configure lua language server for neovim
       require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
       require('lspconfig').solargraph.setup({})
-      -- require('lspconfig').standardrb.setup({})
 
       lsp.setup()
       -- Make sure you setup `cmp` after lsp-zero
@@ -221,13 +220,13 @@ local plugins = {
       end
 
       require('luasnip.loaders.from_vscode').lazy_load()
+      require('luasnip.loaders.from_vscode').load_standalone({ path = "./snippets/erbrails.code-snippets" })
       luasnip.filetype_extend("ruby", {"rails"})
 
       cmp.setup({
         sources = {
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
-          -- { name = 'friendly-snippets'},
         },
         mapping = {
           ['<C-f>'] = cmp_action.luasnip_jump_forward(),

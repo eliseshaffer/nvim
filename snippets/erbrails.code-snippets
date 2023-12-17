@@ -1,0 +1,145 @@
+{
+    "form_with": {
+        "prefix": "formwm",
+        "body": [
+            "<%= form_with model: ${1:@model} do |${2:form}| %>",
+            "  $3",
+            "<% end %>"
+        ],
+        "description": "form_with model",
+        "scope": "eruby"
+    },
+    "form_with": {
+        "prefix": "formwu",
+        "body": [
+            "<%= form_with url: '${1:/path/to/url}' do |${2:form}| %>",
+            "  $3",
+            "<% end %>"
+        ],
+        "description": "form_with url",
+        "scope": "eruby"
+    },
+    "form_label": {
+        "prefix": "fl",
+        "body": [
+            "<%= form.label :${1:field} %>",
+        ],
+        "description": "form label",
+        "scope": "eruby"
+    },
+    "form text_field": {
+        "prefix": "ftf",
+        "body": [
+            "<%= form.text_field :${1:field} %>",
+        ],
+        "description": "form text_field",
+        "scope": "eruby"
+    },
+    "form text_area": {
+        "prefix": "fta",
+        "body": [
+            "<%= form.text_area :${1:field} %>",
+        ],
+        "description": "form text_area",
+        "scope": "eruby"
+    },
+    "form text_area with size": {
+        "prefix": "ftas",
+        "body": [
+            "<%= form.text_area :${1:field}, size: ${2:} %>",
+        ],
+        "description": "form text_area with size parameter",
+        "scope": "eruby"
+    },
+    "form action text field": {
+        "prefix": "frtf",
+        "body": [
+            "<%= form.rich_text_area :${1:field} %>",
+        ],
+        "description": "form action text field",
+        "scope": "eruby"
+    },
+    "form submit button": {
+        "prefix": "fsbmt",
+        "body": [
+            "<%= form.submit \"${1:label}\" }%>",
+        ],
+        "description": "form submit button",
+        "scope": "eruby"
+    },
+    "link_to :resource": {
+        "prefix": "ltr",
+        "body": [
+            "<%= link_to \"${1:body}\", ${1:@resource} %>",
+        ],
+        "description": "link_to a resource",
+        "scope": "eruby"
+    },
+    "link_to path": {
+        "prefix": "ltp",
+        "body": [
+            "<%= link_to \"${1:body}\", ${1:resource}_path %>",
+        ],
+        "description": "form link a rails path",
+        "scope": "eruby"
+    },
+    "turbo frame tag": {
+        "prefix": "trboft",
+        "body": [
+            "<%= turbo_frame_tag dom_id(${1:resource}) %>",
+            "  $2",
+            "<% end %>"
+        ],
+        "description": "turbo frame tag",
+        "scope": "eruby"
+    },
+    "turbo_stream replace": {
+        "prefix": "trbosr",
+        "body": [
+            "<%= turbo_stream.replace \"${1:resource}\" do %>",
+            "  $2",
+            "<% end %>"
+        ],
+        "description": "turbo_stream replace",
+        "scope": "eruby"
+    },
+    "turbo_stream prepend": {
+        "prefix": "trbosp",
+        "body": [
+            "<%= turbo_stream.prepend \"${1:resource}\" do %>",
+            "  $2",
+            "<% end %>"
+        ],
+        "description": "turbo stream prepend",
+        "scope": "eruby"
+    },
+    "turbo_stream append": {
+        "prefix": "trbosa",
+        "body": [
+            "<%= turbo_stream.append \"${1:resource}\" do %>",
+            "  $2",
+            "<% end %>"
+        ],
+        "description": "turbo stream append",
+        "scope": "eruby"
+    },
+    "turbo_stream remove": {
+        "prefix": "trbosrm",
+        "body": [
+            "<%= turbo_stream.remove \"${1:resource}\" do %>",
+            "<% end %>"
+        ],
+        "description": "turbo stream remove",
+        "scope": "eruby"
+    },
+    "turbo_stream update": {
+        "prefix": "trbosu",
+        "body": [
+            "<%= turbo_stream.update \"${1:resource}\" do %>",
+            "  $2",
+            "<% end %>"
+        ],
+        "description": "turbo stream update",
+        "scope": "eruby"
+    },
+}
