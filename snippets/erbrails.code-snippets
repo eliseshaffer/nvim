@@ -1,5 +1,5 @@
 {
-    "form_with": {
+    "form_with :model": {
         "prefix": "formwm",
         "body": [
             "<%= form_with model: ${1:@model} do |${2:form}| %>",
@@ -9,7 +9,7 @@
         "description": "form_with model",
         "scope": "eruby"
     },
-    "form_with": {
+    "form_with :url": {
         "prefix": "formwu",
         "body": [
             "<%= form_with url: '${1:/path/to/url}' do |${2:form}| %>",
@@ -62,7 +62,7 @@
     "form submit button": {
         "prefix": "fsbmt",
         "body": [
-            "<%= form.submit \"${1:label}\" }%>",
+            "<%= form.submit \"${1:label}\" %>",
         ],
         "description": "form submit button",
         "scope": "eruby"
