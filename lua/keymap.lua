@@ -75,6 +75,7 @@ key('n', '<leader>grl', ':GetCommitLink<CR>', { noremap = true, silent = true, d
 key('v', '<leader>grl', ':GetCommitLink<CR>', { noremap = true, silent = true, desc = "Get Remote Link" })
 key('n', '<leader>gs', ':Neogit kind=vsplit<CR>', { noremap = true, silent = true, desc = "Git Status" })
 key('v', '<leader>gs', ':Neogit king=vsplit<CR>', { noremap = true, silent = true, desc = "Git Status" })
+key('n', '<leader>gdp', ':Gitsigns preview_hunk_inline<CR>', { noremap = true, silent = true, desc = "Preview Git Hunk" })
 key('n', '<leader>gdm', ':DiffviewOpen main<CR>', { noremap = true, silent = true, desc = "Diff Main Branch" })
 key('v', '<leader>gdm', ':DiffviewOpen main<CR>', { noremap = true, silent = true, desc = "Diff Main Branch" })
 key('n', '<leader>gdM', ':DiffviewOpen master<CR>', { noremap = true, silent = true, desc = "Diff Main Branch" })
@@ -106,17 +107,17 @@ wk.setup {
   -- or leave it empty to use the default settings
   -- refer to the configuration section below
   window = {
-    border = "single", -- none, single, double, shadow
-    position = "bottom", -- bottom, top
-    margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]. When between 0 and 1, will be treated as a percentage of the screen size.
+    border = "single",        -- none, single, double, shadow
+    position = "bottom",      -- bottom, top
+    margin = { 1, 0, 1, 0 },  -- extra window margin [top, right, bottom, left]. When between 0 and 1, will be treated as a percentage of the screen size.
     padding = { 1, 0, 4, 0 }, -- extra window padding [top, right, bottom, left]
-    winblend = 0, -- value between 0-100 0 for fully opaque and 100 for fully transparent
-    zindex = 1000, -- positive value to position WhichKey above other floating windows.
+    winblend = 0,             -- value between 0-100 0 for fully opaque and 100 for fully transparent
+    zindex = 1000,            -- positive value to position WhichKey above other floating windows.
   },
   layout = {
     -- height = { min = 4, max = 25 }, -- min and max height of the columns
     -- width = { min = 15, max = 50 }, -- min and max width of the columns
-    spacing = 3, -- spacing between columns
+    spacing = 3,      -- spacing between columns
     align = "center", -- align columns left, center or right
   },
 }
@@ -125,8 +126,12 @@ wk.register({
   t = "Tests",
   f = "Files",
   p = "Projects",
-  g = {name = "Git",
-    d = "Diff",
+  g = {
+    name = "Git",
+    d = {
+      name = "Diff",
+      p = "Preview Hunk"
+    },
     r = "Remote"
   },
   c = "Code",
@@ -134,4 +139,3 @@ wk.register({
   d = "Darklight",
   k = "Darklight"
 }, { prefix = "<leader>" })
-
