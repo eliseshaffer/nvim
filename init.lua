@@ -52,6 +52,11 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   command = "setlocal ft=rbs"
 })
 
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.code-snippets",
+  command = "setlocal ft=json"
+})
+
 -- vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 --   pattern = "*.turbo_stream.erb",
 --   command = "setlocal ft=eruby.html"
