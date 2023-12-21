@@ -14,7 +14,6 @@ key('n', '<leader>dl', ":DarkLightSwitch<CR>", { noremap = true, desc = "Toggle 
 
 -- Files (NvimTree / Telescope)
 -- -------------------------------------------------------------------------------------------
--- key('n', '<leader>ft', ":Telescope file_browser initial_mode=normal<CR>", { noremap = false })
 key('n', '<leader>ft', ":Neotree toggle<CR>", { noremap = false, desc = "File Tree" })
 key('n', '<leader>ff', ":lua require('telescope.builtin').find_files()<CR>", { noremap = false, desc = "Find Files" })
 key('n', '<leader>fa', ":Telescope find_files find_command=rg,--hidden,--files<CR>",
@@ -38,18 +37,11 @@ key('n', '<leader>tl', ":TestLast<CR>", { noremap = false, desc = "Run Last Test
 -- -------------------------------------------------------------------------------------------
 
 -- Line Movement (move.nvim)
---   - I don't have the correct character for Alt-H and Alt-L
---   - Alt maps don't work on Mac withouth the special characters
 -- -------------------------------------------------------------------------------------------
 key('n', '∆', ":MoveLine(1)<CR>", { noremap = true, silent = true })
 key('n', '˚', ":MoveLine(-1)<CR>", { noremap = true, silent = true })
 key('v', '∆', ":MoveBlock(1)<CR>", { noremap = true, silent = true })
 key('v', '˚', ":MoveBlock(-1)<CR>", { noremap = true, silent = true })
--- vim.api.nvim_set_keymap('n', '<A-j>', ":MoveLine(1)<CR>", { noremap = true, silent = true })
--- key('n', 'A-h', ":MoveHChar(1)<CR>", { noremap = true, silent = true })
--- key('n', 'A-l', ":MoveHChar(-1)<CR>", { noremap = true, silent = true })
--- key('v', 'A-h', ":MoveHBlock(1)<CR>", { noremap = true, silent = true })
--- key('v', 'A-l', ":MoveHBlock(-1)<CR>", { noremap = true, silent = true })
 -- -------------------------------------------------------------------------------------------
 
 -- Code Navigation (LSP)
