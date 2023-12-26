@@ -9,14 +9,13 @@ local function button(sc, txt, keybind, keybind_opts)
 end
 
 local function footer()
-  local total_plugins = require("lazy").stats().count
-  local date = os.date("%m-%d-%Y")
-  local time = os.date("%H:%M:%S")
+  local v = vim.version()
+  local version = ' v' .. v.major .. '.' .. v.minor .. '.' .. v.patch
+  local stats = require('lazy').stats()
+  local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
   return {
     [[ ]],
-    [[ ]],
-    [[ ]],
-    "[ " .. total_plugins .. " plugins] [ " .. date .. "] [ " .. time .. "]",
+    version .. '                              ' .. '⚡' .. stats.count .. ' plugins',
   }
 end
 
