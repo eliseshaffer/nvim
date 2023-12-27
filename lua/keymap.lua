@@ -88,7 +88,10 @@ key('n', '<leader>Q', ':wqa<CR>', { noremap = true, silent = true, desc = "Save 
 key('v', '<leader>Q', ':wqa<CR>', { noremap = true, silent = true, desc = "Save And Quit" })
 -- -------------------------------------------------------------------------------------------
 
-key('n', '<leader>l', ':source %<CR>', { noremap = true, silent = true, desc = "Save And Quit" })
+-- Source current file
+-- -------------------------------------------------------------------------------------------
+key('n', '<leader>l', ':source %<CR>', { noremap = true, silent = true, desc = "Source current file" })
+-- -------------------------------------------------------------------------------------------
 
 local status, wk = pcall(require, "which-key")
 
