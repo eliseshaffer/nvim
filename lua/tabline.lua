@@ -16,7 +16,7 @@ local default_config = {
     {
       name = "TableauBackground",
       fg = "#24273a",
-      bg = "#c0a0f6"
+      bg = "#24273a"
     },
     {
       name = "TableauCurrentInactive",
@@ -29,14 +29,16 @@ local default_config = {
       bg = "#b690d6"
     },
     {
-      name = "TableauOtherInactive",
-      fg = "#24273a",
-      bg = "#d59dc6"
+      name = "TabteauOtherInactive",
+      fg = "#d0b0ff",
+      -- fg = "#b57da6",
+      bg = "#24273a",
     },
     {
       name = "TableauOtherActive",
-      fg = "#24273a",
-      bg = "#f5bde6"
+      fg = "#b690d6",
+      -- fg = "#f5bde6",
+      bg = "#24273a",
     },
   },
   hidden_buffer_types = {
@@ -95,7 +97,7 @@ local function create_buffer_tab(wins, prev_hl, tab_id)
         hl = "%#TableauOtherActive#"
       end
 
-      buftab = buftab .. hl .. " " .. shortname .. "|" .. ft .. "|" .. buftype .. " " .. prev_hl
+      buftab = buftab .. hl .. " " .. shortname .. " " .. prev_hl
     end
   end
 
@@ -126,7 +128,7 @@ local function set_tabline()
   local tabline = "%#TabLine#"
   local tabpages = vim.api.nvim_list_tabpages()
   for _, tab in ipairs(tabpages) do
-    tabline = tabline .. create_tab(tab) .. "%#TabLine#"
+    tabline = tabline .. " " .. create_tab(tab) .. "%#TableauBackground#  "
   end
   return tabline
 end
