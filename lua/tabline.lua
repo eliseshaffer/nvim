@@ -116,8 +116,8 @@ local function create_tab(tab_id)
 
   local buftab = create_buffer_tab(wins, hl, tab_id)
 
-  tab          = hl .. "%" .. place .. "T" .. hl .. " " .. place .. " " ..
-      buftab .. "%" .. place .. "X—%X "
+  tab          = hl .. "%" .. place .. "T" .. hl .. " " .. place .. ":" ..
+      buftab .. "%" .. place .. "X —%X "
   return tab
 end
 
@@ -125,7 +125,7 @@ local function set_tabline()
   local tabline = "%#TabLine#"
   local tabpages = vim.api.nvim_list_tabpages()
   for _, tab in ipairs(tabpages) do
-    tabline = tabline .. "" .. create_tab(tab) .. "%#TableauBackground#  "
+    tabline = tabline .. "" .. create_tab(tab) .. "%#TableauBackground# "
   end
   return tabline
 end
