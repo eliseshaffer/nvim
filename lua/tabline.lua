@@ -89,12 +89,12 @@ local function create_buffer_tab(wins, prev_hl, tab_id)
 
     if (not utils.has_key(ft, buftype)) then
       if win == current then
-        hl = "%#TableauCurrentActive#"
+        hl = "%#TableauCurrentActive# "
       elseif win == active_on_tab then
-        hl = "%#TableauOtherActive#"
+        hl = "%#TableauOtherActive#*"
       end
 
-      buftab = buftab .. hl .. " " .. shortname .. " " .. prev_hl
+      buftab = buftab .. hl .. "" .. shortname .. " " .. prev_hl
     end
   end
 
