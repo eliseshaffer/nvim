@@ -2,6 +2,7 @@
 -- TODO: Neotree, NERDTree, etc.
 -- TODO: Neogit
 -- TODO: Fix complexity in hidden buffers
+-- TODO: Add expression matching to hidden buffers
 
 
 local devicons = require("nvim-web-devicons")
@@ -41,20 +42,15 @@ local hidden_buffer_types = {
   "NeogitStatus",
   "nofile",
 }
-function has_key(ft)
+
+utils.has_key = function(ft, buftype)
   for _, type in ipairs(hidden_buffer_types) do
-    if type == ft then
+    if type == ft or type == buftype then
       return true
     end
   end
 
   return false
-end
-
-function build_map(table)
-  for _, type in ipairs(hidden_buffer_types) do
-
-  end
 end
 
 utils.render_icon = function(bufname)
@@ -72,7 +68,7 @@ end
 
 utils.filter_buffer_if_hidden = function(buf_id)
   local filetype = vim.api.nvim_buf_get_option(buf_id, "ft")
-  has_key(hidden_buffer_types, filetype)
+  utils.has_key(hidden_buffer_types, filetype)
 end
 
 local function create_buffer_tab(wins, prev_hl, tab_id)
@@ -91,17 +87,15 @@ local function create_buffer_tab(wins, prev_hl, tab_id)
     local ft            = vim.api.nvim_buf_get_option(buf, "ft")
     local buftype       = vim.api.nvim_buf_get_option(buf, "buftype")
 
-    if has_key(ft) or has_key(buftype) then
-      print("yes")
+    if utils.has_key(ft, buftype) then
     else
-    
       if win == current then
-      hl = "%#TableauCurrentActive#"
-    elseif win == active_on_tab then
-      hl = "%#TableauOtherActive#"
-    end
+        hl = "%#TableauCurrentActive#"
+      elseif win == active_on_tab then
+        hl = "%#TableauOtherActive#"
+      end
 
-    buftab = buftab .. hl .. " " .. shortname .. "|" .. ft .. "|" .. buftype .. " " .. prev_hl
+      buftab = buftab .. hl .. " " .. shortname .. "|" .. ft .. "|" .. buftype .. " " .. prev_hl
     end
   end
 
@@ -138,13 +132,14 @@ local function set_tabline()
 end
 
 M.setup = function()
+  utils.create_highlight_groups()
+  vim.o.tabline = "%!v:lua.render_tableau()"
 end
 
 function _G.render_tableau()
   return set_tabline()
 end
 
-utils.create_highlight_groups()
-vim.o.tabline = "%!v:lua.render_tableau()"
+M.setup()
 
 return M
