@@ -1,6 +1,7 @@
 -- TODO: Remove Telescope buffers from Tabline
--- TODO: Neotree, NERDTree, etc. 
+-- TODO: Neotree, NERDTree, etc.
 -- TODO: Neogit
+-- TODO: Fix complexity in hidden buffers
 
 
 local devicons = require("nvim-web-devicons")
@@ -35,6 +36,27 @@ local hl_groups = {
   },
 }
 
+local hidden_buffer_types = {
+  "neo-tree",
+  "NeogitStatus",
+  "nofile",
+}
+function has_key(ft)
+  for _, type in ipairs(hidden_buffer_types) do
+    if type == ft then
+      return true
+    end
+  end
+
+  return false
+end
+
+function build_map(table)
+  for _, type in ipairs(hidden_buffer_types) do
+
+  end
+end
+
 utils.render_icon = function(bufname)
   local extension = vim.fn.fnamemodify(bufname, ":e")
   local icon, hl = devicons.get_icon(bufname, extension, { default = true })
@@ -48,24 +70,39 @@ utils.create_highlight_groups = function()
   end
 end
 
+utils.filter_buffer_if_hidden = function(buf_id)
+  local filetype = vim.api.nvim_buf_get_option(buf_id, "ft")
+  has_key(hidden_buffer_types, filetype)
+end
+
 local function create_buffer_tab(wins, prev_hl, tab_id)
   local buftab = ""
   for _, win in pairs(wins) do
-    local current   = vim.api.nvim_get_current_win()
-    local buf       = vim.api.nvim_win_get_buf(win)
-    local bufname   = vim.api.nvim_buf_get_name(buf)
+    -- #check for hidden buffer types
+    -- skip this one
+    local current       = vim.api.nvim_get_current_win()
+    local buf           = vim.api.nvim_win_get_buf(win)
+    local bufname       = vim.api.nvim_buf_get_name(buf)
     local active_on_tab = vim.api.nvim_tabpage_get_win(tab_id)
-    local icon      = utils.render_icon(bufname)
-    local shortname = vim.fn.pathshorten(vim.fn.fnamemodify(bufname, ":~:."))
-    local hl        = ""
+    local icon          = utils.render_icon(bufname)
+    local shortname     = vim.fn.pathshorten(vim.fn.fnamemodify(bufname, ":~:."))
+    local hl            = ""
 
-    if win == current then
+    local ft            = vim.api.nvim_buf_get_option(buf, "ft")
+    local buftype       = vim.api.nvim_buf_get_option(buf, "buftype")
+
+    if has_key(ft) or has_key(buftype) then
+      print("yes")
+    else
+    
+      if win == current then
       hl = "%#TableauCurrentActive#"
     elseif win == active_on_tab then
       hl = "%#TableauOtherActive#"
     end
 
-    buftab = buftab .. hl .. " " .. shortname .. " " .. prev_hl
+    buftab = buftab .. hl .. " " .. shortname .. "|" .. ft .. "|" .. buftype .. " " .. prev_hl
+    end
   end
 
   return buftab
