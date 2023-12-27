@@ -1,3 +1,8 @@
+-- TODO: Remove Telescope buffers from Tabline
+-- TODO: Neotree, NERDTree, etc. 
+-- TODO: Neogit
+
+
 local devicons = require("nvim-web-devicons")
 local M = {}
 local utils = {}
@@ -21,12 +26,12 @@ local hl_groups = {
   {
     name = "TableauOtherInactive",
     fg = "#24273a",
-    bg = "#b690d6"
+    bg = "#d59dc6"
   },
   {
     name = "TableauOtherActive",
     fg = "#24273a",
-    bg = "#b690d6"
+    bg = "#f5bde6"
   },
 }
 
@@ -43,18 +48,21 @@ utils.create_highlight_groups = function()
   end
 end
 
-local function create_buffer_tab(wins, prev_hl)
+local function create_buffer_tab(wins, prev_hl, tab_id)
   local buftab = ""
   for _, win in pairs(wins) do
     local current   = vim.api.nvim_get_current_win()
     local buf       = vim.api.nvim_win_get_buf(win)
     local bufname   = vim.api.nvim_buf_get_name(buf)
+    local active_on_tab = vim.api.nvim_tabpage_get_win(tab_id)
     local icon      = utils.render_icon(bufname)
     local shortname = vim.fn.pathshorten(vim.fn.fnamemodify(bufname, ":~:."))
     local hl        = ""
 
     if win == current then
       hl = "%#TableauCurrentActive#"
+    elseif win == active_on_tab then
+      hl = "%#TableauOtherActive#"
     end
 
     buftab = buftab .. hl .. " " .. shortname .. " " .. prev_hl
@@ -73,10 +81,10 @@ local function create_tab(tab_id)
   if tab_id == current then
     hl = "%#TableauCurrentInactive#"
   else
-    hl = "%#TabLine#"
+    hl = "%#TableauOtherInactive#"
   end
 
-  local buftab = create_buffer_tab(wins, hl)
+  local buftab = create_buffer_tab(wins, hl, tab_id)
 
   tab          = hl .. "%" .. place .. "T" .. hl ..
       buftab .. " %" .. place .. "X—%X "
