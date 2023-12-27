@@ -4,9 +4,17 @@ local utils = {}
 
 local hl_groups = {
   TableauBackground = {
-    fg = "",
-    bg = ""
+    fg = "#24273a",
+    bg = "#c0a0f6"
   },
+  TableauSelectedInactive = {
+    fg = "#24273a",
+    bg = "#d0b0ff"
+  },
+  TableauSelectedActive = {
+    fg = "#24273a",
+    bg = "#b690d6"
+  }
 }
 
 utils.render_icon = function(bufname)
@@ -17,18 +25,24 @@ utils.render_icon = function(bufname)
 end
 
 utils.create_highlight_groups = function()
+  vim.api.nvim_set_hl(0, 'TableauSelected', { fg = hl_groups.TableauSelectedInactive.fg, bg = hl_groups.TableauSelectedInactive.bg })
+  vim.api.nvim_set_hl(0, 'TableauSelectedActive', { fg = hl_groups.TableauSelectedActive.fg, bg = hl_groups.TableauSelectedActive.bg })
 end
 
-local function create_buffer_tab(wins, hl)
+local function create_buffer_tab(wins, prev_hl)
   local buftab = ""
   for _, win in pairs(wins) do
-    -- local current   = vim.api.nvim_get_current_win()
+    local current   = vim.api.nvim_get_current_win()
     local buf       = vim.api.nvim_win_get_buf(win)
     local bufname   = vim.api.nvim_buf_get_name(buf)
     local icon      = utils.render_icon(bufname)
     local shortname = vim.fn.pathshorten(vim.fn.fnamemodify(bufname, ':~:.'))
+    local hl = ""
+    if win == current then
+      hl = "%#TableauSelectedActive#"
+    end
 
-    buftab          = buftab .. " " .. icon .. " " .. hl .. shortname .. ' |'
+    buftab          = buftab .. hl .. " " .. shortname .. ' ' .. prev_hl
   end
 
   return buftab
@@ -42,7 +56,7 @@ local function create_tab(tab_id)
   local hl      = ""
 
   if tab_id == current then
-    hl = "%#Normal#"
+    hl = "%#TableauSelected#"
   else
     hl = "%#TabLine#"
   end
@@ -69,7 +83,7 @@ end
 function _G.render_tableau()
   return set_tabline()
 end
-
+utils.create_highlight_groups()
 vim.o.tabline = '%!v:lua.render_tableau()'
 
 return M
