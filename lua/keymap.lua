@@ -67,7 +67,7 @@ key('n', '<leader>grl', ':GetCommitLink<CR>', { noremap = true, silent = true, d
 key('v', '<leader>grl', ':GetCommitLink<CR>', { noremap = true, silent = true, desc = "Get Remote Link" })
 key('n', '<leader>gs', ':Neogit kind=vsplit<CR>', { noremap = true, silent = true, desc = "Git Status" })
 key('v', '<leader>gs', ':Neogit king=vsplit<CR>', { noremap = true, silent = true, desc = "Git Status" })
-key('n', '<leader>gdp', ':Gitsigns preview_hunk_inline<CR>', { noremap = true, silent = true, desc = "Preview Git Hunk" })
+key('n', '<leader>gdp', ':Gitsigns preview_hunk<CR>', { noremap = true, silent = true, desc = "Preview Git Hunk" })
 key('n', '<leader>gdm', ':DiffviewOpen main<CR>', { noremap = true, silent = true, desc = "Diff Main Branch" })
 key('v', '<leader>gdm', ':DiffviewOpen main<CR>', { noremap = true, silent = true, desc = "Diff Main Branch" })
 key('n', '<leader>gdM', ':DiffviewOpen master<CR>', { noremap = true, silent = true, desc = "Diff Main Branch" })
