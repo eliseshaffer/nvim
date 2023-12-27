@@ -1,50 +1,55 @@
--- TODO: Remove Telescope buffers from Tabline
--- TODO: Neotree, NERDTree, etc.
--- TODO: Neogit
+-- TODO: Add configuration for hidden buffer types
 -- TODO: Fix complexity in hidden buffers
 -- TODO: Add expression matching to hidden buffers
-
+-- TODO: Fix focused window when that window is hidden
+-- TODO: Clean up render function scope; maybe this is not possible?
+-- TODO: fix devicons integration
+-- TODO: pick better colors
 
 local devicons = require("nvim-web-devicons")
 local M = {}
 local utils = {}
+local Config = {}
 
-local hl_groups = {
-  {
-    name = "TableauBackground",
-    fg = "#24273a",
-    bg = "#c0a0f6"
+local default_config = {
+  hl_groups = {
+    {
+      name = "TableauBackground",
+      fg = "#24273a",
+      bg = "#c0a0f6"
+    },
+    {
+      name = "TableauCurrentInactive",
+      fg = "#24273a",
+      bg = "#d0b0ff"
+    },
+    {
+      name = "TableauCurrentActive",
+      fg = "#24273a",
+      bg = "#b690d6"
+    },
+    {
+      name = "TableauOtherInactive",
+      fg = "#24273a",
+      bg = "#d59dc6"
+    },
+    {
+      name = "TableauOtherActive",
+      fg = "#24273a",
+      bg = "#f5bde6"
+    },
   },
-  {
-    name = "TableauCurrentInactive",
-    fg = "#24273a",
-    bg = "#d0b0ff"
-  },
-  {
-    name = "TableauCurrentActive",
-    fg = "#24273a",
-    bg = "#b690d6"
-  },
-  {
-    name = "TableauOtherInactive",
-    fg = "#24273a",
-    bg = "#d59dc6"
-  },
-  {
-    name = "TableauOtherActive",
-    fg = "#24273a",
-    bg = "#f5bde6"
-  },
-}
-
-local hidden_buffer_types = {
-  "neo-tree",
-  "NeogitStatus",
-  "nofile",
+  hidden_buffer_types = {
+    "neo-tree",
+    "NeogitStatus",
+    "nofile",
+    "prompt",
+    "TelescopePrompt",
+  }
 }
 
 utils.has_key = function(ft, buftype)
-  for _, type in ipairs(hidden_buffer_types) do
+  for _, type in ipairs(Config.hidden_buffer_types) do
     if type == ft or type == buftype then
       return true
     end
@@ -61,14 +66,9 @@ utils.render_icon = function(bufname)
 end
 
 utils.create_highlight_groups = function()
-  for _, hl in ipairs(hl_groups) do
+  for _, hl in ipairs(Config.hl_groups) do
     vim.api.nvim_set_hl(0, hl.name, { fg = hl.fg, bg = hl.bg })
   end
-end
-
-utils.filter_buffer_if_hidden = function(buf_id)
-  local filetype = vim.api.nvim_buf_get_option(buf_id, "ft")
-  utils.has_key(hidden_buffer_types, filetype)
 end
 
 local function create_buffer_tab(wins, prev_hl, tab_id)
@@ -131,15 +131,17 @@ local function set_tabline()
   return tabline
 end
 
-M.setup = function()
+M.setup = function(config)
+  Config = config
   utils.create_highlight_groups()
   vim.o.tabline = "%!v:lua.render_tableau()"
+
 end
 
 function _G.render_tableau()
   return set_tabline()
 end
 
-M.setup()
+M.setup(default_config)
 
 return M
