@@ -88,6 +88,8 @@ key('n', '<leader>Q', ':wqa<CR>', { noremap = true, silent = true, desc = "Save 
 key('v', '<leader>Q', ':wqa<CR>', { noremap = true, silent = true, desc = "Save And Quit" })
 -- -------------------------------------------------------------------------------------------
 
+key('n', '<leader>l', ':source %<CR>', { noremap = true, silent = true, desc = "Save And Quit" })
+
 local status, wk = pcall(require, "which-key")
 
 if not status then
