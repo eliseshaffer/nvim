@@ -4,7 +4,6 @@
 -- TODO: Fix focused window when that window is hidden
 -- TODO: Clean up render function scope; maybe this is not possible?
 -- TODO: fix devicons integration
--- TODO: pick better colors
 
 local devicons = require("nvim-web-devicons")
 local M = {}
