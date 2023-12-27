@@ -16,6 +16,9 @@ utils.render_icon = function(bufname)
   return "%#" .. hl .. "#" .. icon
 end
 
+utils.create_highlight_groups = function()
+end
+
 local function create_buffer_tab(wins, hl)
   local buftab = ""
   for _, win in pairs(wins) do
@@ -29,9 +32,6 @@ local function create_buffer_tab(wins, hl)
   end
 
   return buftab
-end
-
-local function create_tabline_hl_groups()
 end
 
 local function create_tab(tab_id)
