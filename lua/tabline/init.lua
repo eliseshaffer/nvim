@@ -1,4 +1,4 @@
--- TODO: Add configuration for hidden buffer types
+-- TODO: Handle highlights in a single place
 -- TODO: Fix complexity in hidden buffers
 -- TODO: Add expression matching to hidden buffers
 -- TODO: Fix focused window when that window is hidden
