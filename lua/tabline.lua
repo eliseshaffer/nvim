@@ -29,15 +29,13 @@ local default_config = {
       bg = "#b690d6"
     },
     {
-      name = "TabteauOtherInactive",
+      name = "TableauOtherInactive",
       fg = "#d0b0ff",
-      -- fg = "#b57da6",
       bg = "#24273a",
     },
     {
       name = "TableauOtherActive",
       fg = "#b690d6",
-      -- fg = "#f5bde6",
       bg = "#24273a",
     },
   },
@@ -89,8 +87,7 @@ local function create_buffer_tab(wins, prev_hl, tab_id)
     local ft            = vim.api.nvim_buf_get_option(buf, "ft")
     local buftype       = vim.api.nvim_buf_get_option(buf, "buftype")
 
-    if utils.has_key(ft, buftype) then
-    else
+    if (not utils.has_key(ft, buftype)) then
       if win == current then
         hl = "%#TableauCurrentActive#"
       elseif win == active_on_tab then
