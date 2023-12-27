@@ -97,7 +97,7 @@ local plugins = {
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function() require 'plugins.gitsigns' end
   },
-  { 'nanozuki/tabby.nvim',   config = function() require('plugins.tabby') end },
+  -- { 'nanozuki/tabby.nvim',   config = function() require('plugins.tabby') end },
   { 'sickill/vim-pasta' },
   { 'karb94/neoscroll.nvim', config = function() require('neoscroll').setup() end },
   { 'ryanoasis/vim-devicons' },
