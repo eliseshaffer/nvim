@@ -1,5 +1,6 @@
 local devicons = require('nvim-web-devicons')
 local M = {}
+local utils = {}
 
 local hl_groups = {
   TableauBackground = {
@@ -8,7 +9,7 @@ local hl_groups = {
   },
 }
 
-local function render_icon(bufname)
+utils.render_icon = function(bufname)
   local extension = vim.fn.fnamemodify(bufname, ':e')
   local icon, hl = devicons.get_icon(bufname, extension, { default = true })
 
@@ -21,7 +22,7 @@ local function create_buffer_tab(wins, hl)
     -- local current   = vim.api.nvim_get_current_win()
     local buf       = vim.api.nvim_win_get_buf(win)
     local bufname   = vim.api.nvim_buf_get_name(buf)
-    local icon      = render_icon(bufname)
+    local icon      = utils.render_icon(bufname)
     local shortname = vim.fn.pathshorten(vim.fn.fnamemodify(bufname, ':~:.'))
 
     buftab          = buftab .. " " .. icon .. " " .. hl .. shortname .. ' |'
