@@ -65,10 +65,10 @@ end
 M.setup = function()
 end
 
-function _G.render_tabline()
+function _G.render_tableau()
   return set_tabline()
 end
 
-vim.o.tabline = '%!v:lua.render_tabline()'
+vim.o.tabline = '%!v:lua.render_tableau()'
 
 return M
