@@ -1,6 +1,6 @@
--- TODO: Handle highlights in a single place
+-- TODO: Refactor Tabs in the same way as buffers
+-- TODO: Extract close button as its own component
 -- TODO: Handle buffer clicks transitioning focus within a tab
--- TODO: Make the render a table
 -- FIX: Fix complexity in hidden buffers
 -- TODO: Add expression matching to hidden buffers
 -- FIX: Fix focused window when that window is hidden
@@ -88,7 +88,7 @@ utils.get_highlight_group_for_win = function(tab_id, win_id)
 
   if (not utils.has_key(ft, buftype)) then
     if win_id == current_buf then
-      hl = "%#TableauCurrentActive# "
+      hl = "%#TableauCurrentActive#"
     elseif win_id ~= current_buf and tab_id == current_tab then
       hl = "%#TableauCurrentInactive#"
     elseif tab_id ~= current_tab and win_id == win_id ~= current_buf then
@@ -133,28 +133,6 @@ Buffer.create_buffer = function(tab_id, win_id)
     hl = utils.get_highlight_group_for_win(tab_id, win_id),
     name = name,
   })
-end
-
-local function create_buffer_tab(wins, prev_hl, tab_id)
-  local buftab = ""
-  for _, win in pairs(wins) do
-    -- #check for hidden buffer types
-    -- skip this one
-    local current       = vim.api.nvim_get_current_win()
-    local buf           = vim.api.nvim_win_get_buf(win)
-    local bufname       = vim.api.nvim_buf_get_name(buf)
-    local active_on_tab = vim.api.nvim_tabpage_get_win(tab_id)
-    local icon          = utils.render_icon(bufname)
-    local shortname     = vim.fn.pathshorten(vim.fn.fnamemodify(bufname, ":~:."))
-    local hl            = utils.get_highlight_group_for_win(tab_id, win)
-
-    local ft            = vim.api.nvim_buf_get_option(buf, "ft")
-    local buftype       = vim.api.nvim_buf_get_option(buf, "buftype")
-
-    buftab              = buftab .. hl .. "" .. shortname .. "|" .. ft .. "|" .. buftype .. "" .. prev_hl
-  end
-
-  return buftab
 end
 
 local function create_tab(tab_id)
