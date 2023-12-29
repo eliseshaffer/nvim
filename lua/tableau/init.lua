@@ -1,5 +1,4 @@
--- TODO: Refactor Tabs in the same way as buffers
--- TODO: Extract close button as its own component
+-- TODO: Refactor TabLabel into tabs and nest Buffers/delegate renders
 -- TODO: Handle buffer clicks transitioning focus within a tab
 -- FIX: Fix complexity in hidden buffers
 -- TODO: Add expression matching to hidden buffers
@@ -15,7 +14,6 @@ local utils = require('tableau.utils')
 local Config = require('tableau.config').current()
 local Buffer = require('tableau.buffer')
 local TabLabel = require('tableau.tablabel')
-local CloseTabButton = {}
 
 -- tab = {
 --   hl = "TableauCurrentInactive",
