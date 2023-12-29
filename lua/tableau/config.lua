@@ -1,5 +1,3 @@
-print('loaded')
-
 local M = {}
 
 local default_config = {

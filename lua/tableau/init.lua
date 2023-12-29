@@ -8,13 +8,28 @@
 -- TODO: collapse init.lua filenames
 -- FIX: fix devicons integration
 -- FIX: hide lsp loclist filtering
--- FIX: hidden types showing again
 
 local devicons = require("nvim-web-devicons")
 local M = {}
 local utils = require('tableau.utils')
 local Config = require('tableau.config').current()
-local Buffer = {}
+local Buffer = require('tableau.buffer')
+local TabLabel = {}
+
+function TabLabel:new(tab_id)
+  local o = {
+    hl = utils.get_highlight_group_for_tab(tab_id),
+    place = vim.api.nvim_tabpage_get_number(tab_id)
+  }
+  setmetatable(o, self)
+  self.__index = self
+  return o
+end
+
+function TabLabel:render()
+  -- return self.hl .. self.name
+  return self.hl .. "%" .. self.place .. "T" .. self.hl .. " " .. self.place .. ":"
+end
 
 -- tab = {
 --   hl = "TableauCurrentInactive",
@@ -29,29 +44,6 @@ local Buffer = {}
 --     },
 --   }
 -- }
-function Buffer:new(tab_id, win_id)
-  local buf_id  = vim.api.nvim_win_get_buf(win_id)
-  local bufname = vim.api.nvim_buf_get_name(buf_id)
-  local name    = vim.fn.pathshorten(vim.fn.fnamemodify(bufname, ":~:."))
-  local ft      = vim.api.nvim_buf_get_option(buf_id, "ft")
-  local buftype = vim.api.nvim_buf_get_option(buf_id, "buftype")
-
-  if utils.has_key(ft, buftype) then
-    return nil
-  end
-  local o = {
-    hl = utils.get_highlight_group_for_win(tab_id, win_id),
-    name = name,
-  }
-  setmetatable(o, self)
-  self.__index = self
-  return o
-end
-
-function Buffer:render()
-  return self.hl .. ' ' .. self.name .. ' '
-end
-
 local function create_tab(tab_id)
   local tab     = ""
   local current = vim.api.nvim_get_current_tabpage()
@@ -75,8 +67,7 @@ local function create_tab(tab_id)
     buftab = buftab .. buffer:render()
   end
 
-  tab = hl .. "%" .. place .. "T" .. hl .. " " .. place .. ":" ..
-      buftab .. hl .. "%" .. place .. "X — %X"
+  tab = TabLabel:new(tab_id):render() .. buftab .. hl .. "%" .. place .. "X — %X"
   return tab
 end
 

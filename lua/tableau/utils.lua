@@ -24,6 +24,19 @@ utils.create_highlight_groups = function()
   end
 end
 
+utils.get_highlight_group_for_tab = function(tab_id)
+  local current_tab   = vim.api.nvim_get_current_tabpage()
+  local hl            = ""
+
+  if tab_id == current_tab then
+    hl = "%#TableauCurrentInactive#"
+  elseif tab_id ~= current_tab then
+    hl = "%#TableauOtherInactive#"
+  end
+
+  return hl
+end
+
 utils.get_highlight_group_for_win = function(tab_id, win_id)
   local buf           = vim.api.nvim_win_get_buf(win_id)
   local current_tab   = vim.api.nvim_get_current_tabpage()
