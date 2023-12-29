@@ -114,8 +114,14 @@ end
 --     },
 --   }
 -- }
-function Buffer:new(o)
-  o = o or {}     -- create object if user does not provide one
+function Buffer:new(tab_id, win_id)
+  local buf_id     = vim.api.nvim_win_get_buf(win_id)
+  local bufname = vim.api.nvim_buf_get_name(buf_id)
+  local name    = vim.fn.pathshorten(vim.fn.fnamemodify(bufname, ":~:."))
+  local o = {
+    hl = utils.get_highlight_group_for_win(tab_id, win_id),
+    name = name,
+  }
   setmetatable(o, self)
   self.__index = self
   return o
@@ -123,16 +129,6 @@ end
 
 function Buffer:render()
   return self.hl .. ' ' .. self.name .. ' '
-end
-
-Buffer.create_buffer = function(tab_id, win_id)
-  local buf     = vim.api.nvim_win_get_buf(win_id)
-  local bufname = vim.api.nvim_buf_get_name(buf)
-  local name    = vim.fn.pathshorten(vim.fn.fnamemodify(bufname, ":~:."))
-  return Buffer:new({
-    hl = utils.get_highlight_group_for_win(tab_id, win_id),
-    name = name,
-  })
 end
 
 local function create_tab(tab_id)
@@ -150,7 +146,7 @@ local function create_tab(tab_id)
 
   local buffers_in_tab = {}
   for _, win_id in ipairs(wins) do
-    table.insert(buffers_in_tab, Buffer.create_buffer(tab_id, win_id))
+    table.insert(buffers_in_tab, Buffer:new(tab_id, win_id))
   end
 
   local buftab = ""
@@ -158,10 +154,8 @@ local function create_tab(tab_id)
     buftab = buftab .. buffer:render()
   end
 
-  -- local buftab = create_buffer_tab(wins, hl, tab_id)
-
   tab          = hl .. "%" .. place .. "T" .. hl .. " " .. place .. ":" ..
-      buftab .. "%" .. place .. "X — %X"
+      buftab .. hl .. "%" .. place .. "X — %X"
   return tab
 end
 
