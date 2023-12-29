@@ -8,6 +8,7 @@
 -- TODO: collapse init.lua filenames
 -- FIX: fix devicons integration
 -- FIX: hide lsp loclist filtering
+-- FIX: hidden types showing again
 
 local devicons = require("nvim-web-devicons")
 local M = {}
@@ -44,7 +45,7 @@ local default_config = {
     },
   },
   hidden_buffer_types = {
-    "neo-tree",
+    -- "neo-tree",
     "NeogitStatus",
     "NeogitPopup",
     "NeogitCommitMessage",
@@ -86,16 +87,14 @@ utils.get_highlight_group_for_win = function(tab_id, win_id)
   local buftype       = vim.api.nvim_buf_get_option(buf, "buftype")
   local hl            = ""
 
-  if (not utils.has_key(ft, buftype)) then
-    if win_id == current_buf then
-      hl = "%#TableauCurrentActive#"
-    elseif win_id ~= current_buf and tab_id == current_tab then
-      hl = "%#TableauCurrentInactive#"
-    elseif tab_id ~= current_tab and win_id == win_id ~= current_buf then
-      hl = "%#TableauOtherInactive#"
-    elseif win_id == active_on_tab then
-      hl = "%#TableauOtherActive#*"
-    end
+  if win_id == current_buf then
+    hl = "%#TableauCurrentActive#"
+  elseif win_id ~= current_buf and tab_id == current_tab then
+    hl = "%#TableauCurrentInactive#"
+  elseif tab_id ~= current_tab and win_id == win_id ~= current_buf then
+    hl = "%#TableauOtherInactive#"
+  elseif win_id == active_on_tab then
+    hl = "%#TableauOtherActive#*"
   end
 
   return hl
@@ -115,9 +114,15 @@ end
 --   }
 -- }
 function Buffer:new(tab_id, win_id)
-  local buf_id     = vim.api.nvim_win_get_buf(win_id)
+  local buf_id  = vim.api.nvim_win_get_buf(win_id)
   local bufname = vim.api.nvim_buf_get_name(buf_id)
   local name    = vim.fn.pathshorten(vim.fn.fnamemodify(bufname, ":~:."))
+  local ft      = vim.api.nvim_buf_get_option(buf_id, "ft")
+  local buftype = vim.api.nvim_buf_get_option(buf_id, "buftype")
+
+  if utils.has_key(ft, buftype) then
+    return nil
+  end
   local o = {
     hl = utils.get_highlight_group_for_win(tab_id, win_id),
     name = name,
@@ -154,7 +159,7 @@ local function create_tab(tab_id)
     buftab = buftab .. buffer:render()
   end
 
-  tab          = hl .. "%" .. place .. "T" .. hl .. " " .. place .. ":" ..
+  tab = hl .. "%" .. place .. "T" .. hl .. " " .. place .. ":" ..
       buftab .. hl .. "%" .. place .. "X — %X"
   return tab
 end
