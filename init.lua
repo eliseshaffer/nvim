@@ -84,4 +84,4 @@ vim.cmd([[
 require('plugins')
 -- require('lsp')
 require('keymap')
-require('tabline')
+require('tableau')
