@@ -15,6 +15,7 @@ local utils = require('tableau.utils')
 local Config = require('tableau.config').current()
 local Buffer = require('tableau.buffer')
 local TabLabel = require('tableau.tablabel')
+local CloseTabButton = {}
 
 -- tab = {
 --   hl = "TableauCurrentInactive",
@@ -31,16 +32,7 @@ local TabLabel = require('tableau.tablabel')
 -- }
 local function create_tab(tab_id)
   local tab     = ""
-  local current = vim.api.nvim_get_current_tabpage()
   local wins    = vim.api.nvim_tabpage_list_wins(tab_id)
-  local place   = vim.api.nvim_tabpage_get_number(tab_id)
-  local hl      = "" -- utils.get_highlight_group_for_tab_win(tab_id, win_id)
-
-  if tab_id == current then
-    hl = "%#TableauCurrentInactive#"
-  else
-    hl = "%#TableauOtherInactive#"
-  end
 
   local buffers_in_tab = {}
   for _, win_id in ipairs(wins) do
@@ -52,7 +44,8 @@ local function create_tab(tab_id)
     buftab = buftab .. buffer:render()
   end
 
-  tab = TabLabel:new(tab_id):render() .. buftab .. hl .. "%" .. place .. "X — %X"
+  tab = TabLabel:new(tab_id):render() .. buftab .. TabLabel:new(tab_id):render_close()
+
   return tab
 end
 

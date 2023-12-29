@@ -15,4 +15,8 @@ function TabLabel:render()
   return self.hl .. "%" .. self.place .. "T" .. self.hl .. " " .. self.place .. ":"
 end
 
+function TabLabel:render_close()
+  return self.hl .. "%" .. self.place .. "X — %X"
+end
+
 return TabLabel
