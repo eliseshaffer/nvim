@@ -1,11 +1,10 @@
--- TODO: Handle buffer clicks transitioning focus within a tab
--- FIX: Fix complexity in hidden buffers
+-- TODO: Add configuration to setup
+-- TODO: Clean up render function scope; maybe this is not possible?
 -- TODO: Add expression matching to hidden buffers
 -- FIX: Fix focused window when that window is hidden
--- TODO: Clean up render function scope; maybe this is not possible?
--- TODO: collapse init.lua filenames
 -- FIX: fix devicons integration
--- FIX: hide lsp loclist filtering
+-- TODO: Handle buffer clicks transitioning focus within a tab
+-- TODO: collapse init.lua filenames
 
 local devicons = require("nvim-web-devicons")
 local M = {}
