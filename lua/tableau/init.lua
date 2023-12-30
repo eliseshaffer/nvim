@@ -1,5 +1,5 @@
 -- TODO: Add configuration to setup
--- TODO: Clean up render function scope; maybe this is not possible?
+-- TODO: Clean up global render function scope; maybe this is not possible?
 -- TODO: Add expression matching to hidden buffers
 -- FIX: Fix focused window when that window is hidden
 -- FIX: fix devicons integration
