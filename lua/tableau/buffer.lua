@@ -1,6 +1,10 @@
 local utils = require('tableau.utils')
 local Buffer = {}
 
+-- {
+--   hl = "TableauCurrentActive",
+--   name = 'keymap.lua'
+-- },
 function Buffer:new(tab_id, win_id)
   local buf_id  = vim.api.nvim_win_get_buf(win_id)
   local bufname = vim.api.nvim_buf_get_name(buf_id)
@@ -23,6 +27,5 @@ end
 function Buffer:render()
   return self.hl .. ' ' .. self.name .. ' '
 end
-
 
 return Buffer

@@ -1,4 +1,3 @@
--- TODO: Refactor TabLabel into tabs and nest Buffers/delegate renders
 -- TODO: Handle buffer clicks transitioning focus within a tab
 -- FIX: Fix complexity in hidden buffers
 -- TODO: Add expression matching to hidden buffers
@@ -11,48 +10,18 @@
 local devicons = require("nvim-web-devicons")
 local M = {}
 local utils = require('tableau.utils')
-local Config = require('tableau.config').current()
-local Buffer = require('tableau.buffer')
-local TabLabel = require('tableau.tablabel')
-
--- tab = {
---   hl = "TableauCurrentInactive",
---   buffers = {
---     {
---       hl = "TableauCurrentActive",
---       name = 'init.lua'
---     },
---     {
---       hl = "TableauCurrentActive",
---       name = 'keymap.lua'
---     },
---   }
--- }
-local function create_tab(tab_id)
-  local tab     = ""
-  local wins    = vim.api.nvim_tabpage_list_wins(tab_id)
-
-  local buffers_in_tab = {}
-  for _, win_id in ipairs(wins) do
-    table.insert(buffers_in_tab, Buffer:new(tab_id, win_id))
-  end
-
-  local buftab = ""
-  for _, buffer in ipairs(buffers_in_tab) do
-    buftab = buftab .. buffer:render()
-  end
-
-  tab = TabLabel:new(tab_id):render() .. buftab .. TabLabel:new(tab_id):render_close()
-
-  return tab
-end
+local Tab = require('tableau.tab')
 
 local function set_tabline()
-  local tabline = "%#TabLine#"
+  local tabline = "%#TableauBackground#"
   local tabpages = vim.api.nvim_list_tabpages()
-  for _, tab in ipairs(tabpages) do
-    tabline = tabline .. "" .. create_tab(tab) .. "%#TableauBackground#"
+
+  for _, tab_id in ipairs(tabpages) do
+    local tab = Tab:new(tab_id)
+    tab:add_buffers()
+    tabline = tabline .. "" .. tab:render() .. "%#TableauBackground#"
   end
+
   return tabline
 end
 
