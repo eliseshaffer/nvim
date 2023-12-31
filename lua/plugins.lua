@@ -303,7 +303,7 @@ local plugins = {
       require 'plugins.vim-test'
     end
   },
-  { "pocco81/auto-save.nvim" },
+  { "pocco81/auto-save.nvim", config = function() require("plugins.autosave") end },
   { 'ur4ltz/move.nvim' },
   {
     'numToStr/Comment.nvim',
