@@ -65,16 +65,28 @@ local plugins = {
   },
   { "folke/which-key.nvim", },
   {
-    'mauricekraus/winbar.nvim',
+    "utilyre/barbecue.nvim",
+    name = "barbecue",
+    version = "*",
     dependencies = {
       "SmiteshP/nvim-navic",
+      "nvim-tree/nvim-web-devicons", -- optional dependency
     },
-    config = function()
-      require("plugins.winbar")
-    end
+    opts = {
+      -- configurations go here
+    },
   },
-  { "petertriho/nvim-scrollbar", config = function() require("scrollbar").setup() end },
-  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+  -- {
+  --   'mauricekraus/winbar.nvim',
+  --   dependencies = {
+  --     "SmiteshP/nvim-navic",
+  --   },
+  --   config = function()
+  --     require("plugins.winbar")
+  --   end
+  -- },
+  { "petertriho/nvim-scrollbar",           config = function() require("scrollbar").setup() end },
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl",                                        opts = {} },
   {
     'kevinhwang91/nvim-ufo',
     dependencies = 'kevinhwang91/promise-async',
@@ -221,7 +233,7 @@ local plugins = {
 
       require('luasnip.loaders.from_vscode').lazy_load()
       require('luasnip.loaders.from_vscode').load_standalone({ path = "./snippets/erbrails.code-snippets" })
-      luasnip.filetype_extend("ruby", {"rails"})
+      luasnip.filetype_extend("ruby", { "rails" })
 
       cmp.setup({
         sources = {
