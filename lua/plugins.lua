@@ -24,7 +24,7 @@ local plugins = {
       "MunifTanjim/nui.nvim",
     },
     config = function()
-      require 'plugins.neotree'
+      require 'plugconf.neotree'
     end
   },
   {
@@ -33,13 +33,13 @@ local plugins = {
       'nvim-lua/plenary.nvim'
     },
     config = function()
-      require 'plugins.telescope'
+      require 'plugconf.telescope'
     end
   },
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons', opt = true },
-    config = function() require 'plugins.lualine' end
+    config = function() require 'plugconf.lualine' end
   },
   {
     's1n7ax/nvim-window-picker',
@@ -82,7 +82,7 @@ local plugins = {
   --     "SmiteshP/nvim-navic",
   --   },
   --   config = function()
-  --     require("plugins.winbar")
+  --     require("plugconf.winbar")
   --   end
   -- },
   { "petertriho/nvim-scrollbar",           config = function() require("scrollbar").setup() end },
@@ -90,26 +90,26 @@ local plugins = {
   {
     'kevinhwang91/nvim-ufo',
     dependencies = 'kevinhwang91/promise-async',
-    config = function() require 'plugins.ufo' end
+    config = function() require 'plugconf.ufo' end
   },
   {
     "luukvbaal/statuscol.nvim",
     config = function()
-      require("plugins.statuscol")
+      require("plugconf.statuscol")
     end
   },
   {
     'goolord/alpha-nvim',
     config = function()
-      require('plugins.alpha')
+      require('plugconf.alpha')
     end
   },
   {
     'lewis6991/gitsigns.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function() require 'plugins.gitsigns' end
+    config = function() require 'plugconf.gitsigns' end
   },
-  -- { 'nanozuki/tabby.nvim',   config = function() require('plugins.tabby') end },
+  -- { 'nanozuki/tabby.nvim',   config = function() require('plugconf.tabby') end },
   { 'sickill/vim-pasta' },
   { 'karb94/neoscroll.nvim', config = function() require('neoscroll').setup() end },
   { 'ryanoasis/vim-devicons' },
@@ -119,12 +119,12 @@ local plugins = {
   -- ---------------------------------------------------------------------------
   'eliseshaffer/vim-one',
   'folke/tokyonight.nvim',
-  { 'marko-cerovac/material.nvim', config = function() require 'plugins.material' end },
+  { 'marko-cerovac/material.nvim', config = function() require 'plugconf.material' end },
   {
     "catppuccin/nvim",
     as = "catppuccin",
     config = function()
-      require 'plugins.catppuccin'
+      require 'plugconf.catppuccin'
     end
   },
   {
@@ -140,7 +140,7 @@ local plugins = {
   {
     'TimUntersberger/neogit',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function() require 'plugins.neogit' end
+    config = function() require 'plugconf.neogit' end
   },
   { 'sindrets/diffview.nvim',      dependencies = 'nvim-lua/plenary.nvim' },
   {
@@ -157,7 +157,7 @@ local plugins = {
   {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    config = function() require 'plugins.treesitter' end
+    config = function() require 'plugconf.treesitter' end
   },
   {
     url = 'https://gitlab.com/HiPhish/rainbow-delimiters.nvim.git',
@@ -312,10 +312,10 @@ local plugins = {
   {
     'vim-test/vim-test',
     config = function()
-      require 'plugins.vim-test'
+      require 'plugconf.vim-test'
     end
   },
-  { "pocco81/auto-save.nvim", config = function() require("plugins.autosave") end },
+  { "pocco81/auto-save.nvim", config = function() require("plugconf.autosave") end },
   { 'ur4ltz/move.nvim' },
   {
     'numToStr/Comment.nvim',
