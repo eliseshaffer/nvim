@@ -76,15 +76,6 @@ local plugins = {
       -- configurations go here
     },
   },
-  -- {
-  --   'mauricekraus/winbar.nvim',
-  --   dependencies = {
-  --     "SmiteshP/nvim-navic",
-  --   },
-  --   config = function()
-  --     require("plugconf.winbar")
-  --   end
-  -- },
   { "petertriho/nvim-scrollbar",           config = function() require("scrollbar").setup() end },
   { "lukas-reineke/indent-blankline.nvim", main = "ibl",                                        opts = {} },
   {
