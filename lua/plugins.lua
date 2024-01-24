@@ -101,7 +101,7 @@ local plugins = {
     config = function() require 'plugconf.gitsigns' end
   },
   -- { 'nanozuki/tabby.nvim',   config = function() require('plugconf.tabby') end },
-  { 'sickill/vim-pasta' },
+  { 'sickill/vim-pasta' }, -- auto indent pasted code
   { 'karb94/neoscroll.nvim', config = function() require('neoscroll').setup() end },
   { 'ryanoasis/vim-devicons' },
 
