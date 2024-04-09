@@ -354,7 +354,7 @@ local plugins = {
     end
   },
   { "pocco81/auto-save.nvim", config = function() require("plugconf.autosave") end },
-  { 'ur4ltz/move.nvim' },
+  { 'fedepujol/move.nvim' },
   {
     'numToStr/Comment.nvim',
     opts = {
