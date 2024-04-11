@@ -29,8 +29,6 @@ local plugins = {
   },
   {
     "eliseshaffer/tableau.nvim",
-    branch = "add-user-config",
-    dev = true,
     config = function()
       require('tableau').setup({
         hl_groups = {
