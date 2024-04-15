@@ -3,8 +3,6 @@
 -- Keymaps
 --
 -- -------------------------------------------------------------------------------------------
-vim.g.mapleader = ","
-vim.opt.mouse = "a"
 local key = vim.api.nvim_set_keymap
 
 -- Colors
