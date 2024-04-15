@@ -15,100 +15,21 @@ local plugins = {
   -- ---------------------------------------------------------------------------
   -- UI Plugins
   -- ---------------------------------------------------------------------------
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "MunifTanjim/nui.nvim",
-    },
-    config = function()
-      require 'plugconf.neotree'
-    end
-  },
-  {
-    "eliseshaffer/tableau.nvim",
-    config = function()
-      require('tableau').setup({})
-    end,
-  },
-  {
-    'nvim-telescope/telescope.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim'
-    },
-    config = function()
-      require 'plugconf.telescope'
-    end
-  },
-  {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons', opt = true },
-    config = function() require 'plugconf.lualine' end
-  },
-  {
-    's1n7ax/nvim-window-picker',
-    version = 'v2.*',
-    config = function()
-      require('window-picker').setup({
-        highlights = {
-          statusline = {
-            focused = {
-              fg = '#303446',
-              bg = '#a6d189',
-              bold = false,
-            },
-            unfocused = {
-              fg = '#303446',
-              bg = '#babbf1',
-              bold = false,
-            },
-          },
-        },
-      })
-    end,
-  },
-  { "folke/which-key.nvim", },
-  {
-    "utilyre/barbecue.nvim",
-    name = "barbecue",
-    version = "*",
-    dependencies = {
-      "SmiteshP/nvim-navic",
-      "nvim-tree/nvim-web-devicons", -- optional dependency
-    },
-    opts = {
-      -- configurations go here
-    },
-  },
-  { "petertriho/nvim-scrollbar",           config = function() require("scrollbar").setup() end },
-  { "lukas-reineke/indent-blankline.nvim", main = "ibl",                                        opts = {} },
-  {
-    'kevinhwang91/nvim-ufo',
-    dependencies = 'kevinhwang91/promise-async',
-    config = function() require 'plugconf.ufo' end
-  },
-  {
-    "luukvbaal/statuscol.nvim",
-    config = function()
-      require("plugconf.statuscol")
-    end
-  },
-  {
-    'goolord/alpha-nvim',
-    config = function()
-      require('plugconf.alpha')
-    end
-  },
-  {
-    'lewis6991/gitsigns.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function() require 'plugconf.gitsigns' end
-  },
-  -- { 'nanozuki/tabby.nvim',   config = function() require('plugconf.tabby') end },
-  { 'sickill/vim-pasta' }, -- auto indent pasted code
-  { 'karb94/neoscroll.nvim', config = function() require('neoscroll').setup() end },
+  require("plugins.neotree"),
+  require("plugins.tableau"),
+  require("plugins.telescope"),
+  require("plugins.lualine"),
+  require("plugins.nvim-window-picker"),
+  require("plugins.which-key"),
+  require("plugins.barbecue"),
+  require("plugins.scrollbar"),
+  require("plugins.indent-blankline"),
+  require("plugins.nvim-ufo"),
+  require("plugins.statuscol"),
+  require("plugins.alpha"),
+  require("plugins.gitsigns"),
+  require("plugins.vim-pasta"),
+  require("plugins.neoscroll"),
   { 'ryanoasis/vim-devicons' },
 
   -- ---------------------------------------------------------------------------
@@ -117,28 +38,13 @@ local plugins = {
   'eliseshaffer/vim-one',
   'folke/tokyonight.nvim',
   { 'marko-cerovac/material.nvim', config = function() require 'plugconf.material' end },
-  {
-    "catppuccin/nvim",
-    as = "catppuccin",
-    config = function()
-      require 'plugconf.catppuccin'
-    end
-  },
-  {
-    'eliseshaffer/darklight.nvim',
-    config = function()
-      require('darklight').setup()
-    end
-  },
+  require("plugins.catppuccin"),
+  require("plugins.darklight"),
 
   -- ---------------------------------------------------------------------------
   -- Git Tools
   -- ---------------------------------------------------------------------------
-  {
-    'TimUntersberger/neogit',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function() require 'plugconf.neogit' end
-  },
+  require("plugins.neogit"),
   { 'sindrets/diffview.nvim',      dependencies = 'nvim-lua/plenary.nvim' },
   {
     'ldelossa/gh.nvim',
