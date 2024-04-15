@@ -1,6 +1,8 @@
 return {
   "pocco81/auto-save.nvim",
-  config = function()
-    require("plugconf.autosave")
-  end
+  opts = {
+    execution_message = {
+      message = function() return "" end,
+    }
+  }
 }
