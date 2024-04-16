@@ -1,11 +1,32 @@
 {
-    "test :name": {
+    "Test method": {
         "prefix": "test",
         "body": [
             "test \"${1:@description}\" do",
             "  $2",
             "end"
         ],
+        "description": "Test method",
         "scope": "ruby"
-    }
+    },
+    "Test setup": {
+        "prefix": "set",
+        "body": [
+            "setup do",
+            "  $1",
+            "end"
+        ],
+        "description": "Test setup",
+        "scope": "ruby"
+    },
+    "Test teardown": {
+        "prefix": "tear",
+        "body": [
+            "teardown do",
+            "  $1",
+            "end"
+        ],
+        "description": "Test teardown",
+        "scope": "ruby"
+    },
 }
