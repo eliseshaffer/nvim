@@ -49,7 +49,7 @@ return {
 
     require('luasnip.loaders.from_vscode').lazy_load()
     require('luasnip.loaders.from_vscode').load_standalone({ path = "./snippets/erbrails.code-snippets" })
-    require('luasnip.loaders.from_vscode').load_standalone({ path = "./snippets/testrails.code-snippets" })
+    require('luasnip.loaders.from_vscode').load_standalone({ path = "./snippets/railstest.code-snippets" })
     luasnip.filetype_extend("ruby", { "rails" })
 
     cmp.setup({
