@@ -18,6 +18,7 @@ local opts = {
   dev = {
     path = "~/code/neovim/",
     pattern = "eliseshaffer",
+    fallback = true,
   }
 }
 
