@@ -51,7 +51,7 @@ return {
 
     dashboard.section.buttons.val = {
       button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-      button("s", "  Session", ":Telescope projections<CR>"),
+      button("s", "  Session", ":SearchSession<CR>"),
       button("f", "  Find file", ":Telescope find_files<CR>"),
       button("t", "󰙅  File Tree", ":Neotree toggle<CR>"),
       button("p", "  Plugins", ":e ~/.config/nvim/lua/plugins.lua<CR>"),
