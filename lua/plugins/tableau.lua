@@ -6,6 +6,7 @@ return {
         hidden_buffer_types = {
           "neo-tree",
           "nofile",
+          "TelescopePrompt"
         },
       })
   end,
