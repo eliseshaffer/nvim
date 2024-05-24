@@ -61,6 +61,7 @@ key('n', '<leader>cm', ':Glow<CR>', { noremap = true, silent = true, desc = "Pre
 
 -- Git Tools
 -- -------------------------------------------------------------------------------------------
+key('n', '<leader>gb', ':BlameToggle<CR>', { noremap = true, silent = true, desc = "Get Remote Link" })
 key('n', '<leader>grl', ':GetCommitLink<CR>', { noremap = true, silent = true, desc = "Get Remote Link" })
 key('v', '<leader>grl', ':GetCommitLink<CR>', { noremap = true, silent = true, desc = "Get Remote Link" })
 key('n', '<leader>gs', ':Neogit kind=vsplit<CR>', { noremap = true, silent = true, desc = "Git Status" })
@@ -123,6 +124,7 @@ wk.register({
   p = "Projects",
   g = {
     name = "Git",
+    b = "Blame file",
     d = {
       name = "Diff",
       p = "Preview Hunk"
