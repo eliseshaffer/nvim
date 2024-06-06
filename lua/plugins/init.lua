@@ -4,6 +4,7 @@ return {
     dependencies = { 'nvim-telescope/telescope.nvim' },
     config = {
       session_dir = vim.fn.stdpath("data") .. "/sessions/",
+      pre_save_cmds = { 'Neotree close' },
     }
   }
   -- {
