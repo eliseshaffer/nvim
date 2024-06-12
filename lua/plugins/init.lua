@@ -6,7 +6,7 @@ return {
       session_dir = vim.fn.stdpath("data") .. "/sessions/",
       pre_save_cmds = { 'Neotree close' },
     }
-  }
+  },
   -- {
   --   'akinsho/bufferline.nvim',
   --   version = "*",
@@ -14,5 +14,5 @@ return {
   --   config = function()
   --     require("bufferline").setup {}
   --   end,
-  -- }
+  -- },
 }

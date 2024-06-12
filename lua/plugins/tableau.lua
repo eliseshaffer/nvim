@@ -1,3 +1,4 @@
+-- return {}
 return {
   "eliseshaffer/tableau.nvim",
   dev = "true",
