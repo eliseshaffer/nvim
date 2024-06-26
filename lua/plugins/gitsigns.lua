@@ -3,12 +3,12 @@ return {
   dependencies = { 'nvim-lua/plenary.nvim' },
   opts = {
     signs = {
-      add          = {hl = 'GitSignsAdd'   , text = '▎', numhl=''   , linehl='GitSignsAddLn'},
-      untracked    = {hl = 'GitSignsAdd'   , text = '▎', numhl=''   , linehl='GitSignsAddLn'},
-      change       = {hl = 'GitSignsChange', text = '▎', numhl='', linehl='GitSignsChangeLn'},
-      delete       = {hl = 'GitSignsDelete', text = '▎', numhl='', linehl='GitSignsDeleteLn'},
-      topdelete    = {hl = 'GitSignsDelete', text = '－', numhl='', linehl='GitSignsDeleteLn'},
-      changedelete = {hl = 'GitSignsChangeDelete', text = '▎', numhl='', linehl='GitSignsChangeLn'},
+      add          = { text = '┃' },
+      change       = { text = '┃' },
+      delete       = { text = '_' },
+      topdelete    = { text = '‾' },
+      changedelete = { text = '~' },
+      untracked    = { text = '┆' },
     },
     signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
     numhl      = true, -- Toggle with `:Gitsigns toggle_numhl`
@@ -48,9 +48,7 @@ return {
       delay = 1000,
       ignore_whitespace = false,
     },
-    current_line_blame_formatter_opts = {
-      relative_time = false
-    },
+    current_line_blame_formatter = '<author>, <author_time:%R> - <summary>',
     sign_priority = 1,
     update_debounce = 100,
     status_formatter = nil, -- Use default
@@ -62,9 +60,6 @@ return {
       relative = 'cursor',
       row = 0,
       col = 1
-    },
-    yadm = {
-      enable = false
     },
   }
 }
