@@ -102,13 +102,23 @@ wk.setup {
   -- your configuration comes here
   -- or leave it empty to use the default settings
   -- refer to the configuration section below
-  window = {
-    border = "single",        -- none, single, double, shadow
-    position = "bottom",      -- bottom, top
-    margin = { 1, 0, 1, 0 },  -- extra window margin [top, right, bottom, left]. When between 0 and 1, will be treated as a percentage of the screen size.
-    padding = { 1, 0, 4, 0 }, -- extra window padding [top, right, bottom, left]
-    winblend = 0,             -- value between 0-100 0 for fully opaque and 100 for fully transparent
-    zindex = 1000,            -- positive value to position WhichKey above other floating windows.
+  win = {
+    -- don't allow the popup to overlap with the cursor
+    no_overlap = true,
+    width = 200,
+    -- height = { min = 4, max = 25 },
+    col = 3,
+    -- row = math.huge,
+    border = "single",
+    padding = { 3, 2 }, -- extra window padding [top/bottom, right/left]
+    title = true,
+    title_pos = "center",
+    zindex = 1000,
+    -- Additional vim.wo and vim.bo options
+    bo = {},
+    wo = {
+      -- winblend = 10, -- value between 0-100 0 for fully opaque and 100 for fully transparent
+    },
   },
   layout = {
     -- height = { min = 4, max = 25 }, -- min and max height of the columns
@@ -118,21 +128,14 @@ wk.setup {
   },
 }
 
-wk.register({
-  t = "Tests",
-  f = "Files",
-  p = "Projects",
-  g = {
-    name = "Git",
-    b = "Blame file",
-    d = {
-      name = "Diff",
-      p = "Preview Hunk"
-    },
-    r = "Remote"
-  },
-  c = "Code",
-  w = "Window",
-  d = "Darklight",
-  k = "Darklight"
-}, { prefix = "<leader>" })
+wk.add({
+  { "<leader>c",  group = "Code" },
+  { "<leader>d",  group = "Darklight" },
+  { "<leader>f",  group = "Files" },
+  { "<leader>g",  group = "Git" },
+  { "<leader>gd", group = "Git Diff" },
+  { "<leader>gr", group = "Git Remote" },
+  { "<leader>p",  group = "Projects" },
+  { "<leader>t",  group = "Tests" },
+  { "<leader>w",  group = "Window" },
+})
