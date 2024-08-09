@@ -14,6 +14,7 @@ key('n', '<leader>dl', ":DarkLightSwitch<CR>", { noremap = true, desc = "Toggle 
 -- -------------------------------------------------------------------------------------------
 key('n', '<leader>ft', ":Neotree toggle<CR>", { noremap = false, desc = "File Tree" })
 key('n', '<leader>ff', ":lua require('telescope.builtin').find_files()<CR>", { noremap = false, desc = "Find Files" })
+key('n', '<leader>fr', ":lua require('telescope.builtin').resume()<CR>", { noremap = false, desc = "Find Files" })
 key('n', '<leader>fa', ":Telescope find_files find_command=rg,--hidden,--files<CR>",
   { noremap = false, desc = "Find All Files" })
 key('n', '<leader>fg', ":lua require('telescope.builtin').git_files()<CR>", { noremap = false, desc = "Find Git Files" })
