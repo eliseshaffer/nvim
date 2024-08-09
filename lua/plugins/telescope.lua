@@ -18,6 +18,11 @@ return {
           prompt_position = "bottom",
         },
       },
+      mappings = {
+        i = {
+          ["<c-e>"] = actions.to_fuzzy_refine,
+        }
+      }
       -- Don't pass to normal mode with ESC, problem with telescope-project
       -- mappings = {
       --   i = {
