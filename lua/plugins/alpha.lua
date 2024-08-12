@@ -18,6 +18,7 @@ return {
       local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
       return {
         [[ ]],
+        [[ ]],
         version .. '                              ' .. '⚡' .. stats.count .. ' plugins',
       }
     end
@@ -40,6 +41,13 @@ return {
         [[     I8P    I8  I8, ,8I  I8P    I8P    i8'    ,8I       I8, ,8I  I8P     88   ,8'  Yb   I8, ,8I]],
         [[    ,d8     I8, `YbadP' ,d8b,_ ,d8b,_ ,d8,   ,d8'       `YbadP' ,d8b,_ _,88,_,8'_   8)  `YbadP']],
         [[    88P     `Y8888P"Y8888P'"Y888P'"Y88P"Y8888P"        888P"Y8888P'"Y888P""Y8P' "YY8P8P888P"Y888]],
+        [[ ]],
+        [[ ]],
+        [[ ]],
+        [[ ]],
+        [[ ]],
+        [[ ]],
+        [[ ]],
         [[ ]],
         [[ ]],
       },
