@@ -65,7 +65,7 @@ return {
       button("p", "  Plugins", ":e ~/.config/nvim/lua/plugins.lua<CR>"),
       button("u", "  Sync plugins", ":Lazy sync<CR>"),
       button("q", "󰗼  Quit", "<Cmd>qa<CR>"),
-      button("l", "λ  Update laguage servers", ":LspUpdate<CR>")
+      button("l", "λ  Update laguage servers", ":MasonUpdate<CR>")
     }
 
     dashboard.section.header.val = custom_header.val
