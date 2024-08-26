@@ -106,7 +106,7 @@ wk.setup {
   win = {
     -- don't allow the popup to overlap with the cursor
     no_overlap = true,
-    width = 200,
+    -- width = 200,
     -- height = { min = 4, max = 25 },
     col = 3,
     -- row = math.huge,
