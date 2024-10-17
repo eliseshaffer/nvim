@@ -1,1 +1,6 @@
-return { 'fedepujol/move.nvim' }
+return {
+  'fedepujol/move.nvim',
+  opts = {
+    --- Config
+  }
+}
