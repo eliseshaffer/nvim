@@ -1,7 +1,7 @@
 return {
   'TimUntersberger/neogit',
   dependencies = { 'nvim-lua/plenary.nvim' },
-  config = function() 
+  config = function()
     local neogit = require("neogit")
 
     neogit.setup({
@@ -20,6 +20,6 @@ return {
 
     local autocmd = vim.api.nvim_create_autocmd
 
-    autocmd({ "BufEnter" }, {pattern = "NeogitStatus", command = "Neotree close"})
+    autocmd({ "BufEnter" }, { pattern = "NeogitStatus", command = "Neotree close" })
   end
 }
