@@ -29,4 +29,12 @@
         "description": "Test teardown",
         "scope": "ruby"
     },
+    "Debugger": {
+        "prefix": "dbg",
+        "body": [
+            "debugger",
+        ],
+        "description": "Debugger",
+        "scope": "ruby"
+    }
 }
