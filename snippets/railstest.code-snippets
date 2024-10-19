@@ -36,5 +36,37 @@
         ],
         "description": "Debugger",
         "scope": "ruby"
-    }
+    },
+    "Sorbet signature": {
+        "prefix": "sig",
+        "body": [
+            "sig { $1 }"
+        ],
+        "description": "Inline sorbet signature",
+        "scope": "ruby"
+    },
+    "Sorbet params": {
+        "prefix": "spar",
+        "body": [
+            "params($1)"
+        ],
+        "description": "Inline sorbet signature",
+        "scope": "ruby"
+    },
+    "Sorbet returns": {
+        "prefix": "sret",
+        "body": [
+            "returns($1)"
+        ],
+        "description": "Inline sorbet signature",
+        "scope": "ruby"
+    },
+    "Sorbet let": {
+        "prefix": "slet",
+        "body": [
+            "T.let($1)"
+        ],
+        "description": "Inline sorbet signature",
+        "scope": "ruby"
+    },
 }
