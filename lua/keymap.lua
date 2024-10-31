@@ -48,6 +48,7 @@ key('v', '˚', ":MoveBlock(-1)<CR>", { noremap = true, silent = true })
 key('n', '<leader>cd', ':lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true, desc = "Go To Definition" })
 key('n', '<leader>cD', ':lua vim.lsp.buf.declaration()<CR>',
   { noremap = true, silent = true, desc = "Go To Declaration" })
+-- key('n', '<leader>cp', ":lua lua require('goto-preview').goto_preview_definition()<CR>", { noremap = true, silent = true, desc = "Preview Definition" })
 key('n', '<leader>cr', ':lua vim.lsp.buf.references()<CR>', { noremap = true, silent = true, desc = "List References" })
 key('n', '<leader>ci', ':lua vim.lsp.buf.implementation()<CR>',
   { noremap = true, silent = true, desc = "Goto Implementation" })
