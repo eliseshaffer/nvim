@@ -79,6 +79,7 @@ key('v', '<leader>gdM', ':DiffviewOpen master<CR>', { noremap = true, silent = t
 -- -------------------------------------------------------------------------------------------
 key('n', '<leader>wT', ':tabnew<CR>', { noremap = true, silent = true, desc = "Open New Tab" })
 key('n', '<leader>wt', ':tabclose<CR>', { noremap = true, silent = true, desc = "Close Current Tab" })
+key('n', '<leader>wo', ':tabonly<CR>', { noremap = true, silent = true, desc = "Close Other Tabs" })
 key('n', '<leader>ws', ':split<CR>', { noremap = true, silent = true, desc = "Split Horizontally" })
 key('n', '<leader>wv', ':vsplit<CR>', { noremap = true, silent = true, desc = "Split Vertically" })
 key('n', '<leader>wq', '<C-w>q', { noremap = true, silent = true, desc = "Close Current Window" })
