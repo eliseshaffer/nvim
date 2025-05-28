@@ -141,5 +141,5 @@
         ],
         "description": "turbo stream update",
         "scope": "eruby"
-    },
+    }
 }

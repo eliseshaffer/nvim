@@ -68,5 +68,5 @@
         ],
         "description": "Inline sorbet signature",
         "scope": "ruby"
-    },
+    }
 }
