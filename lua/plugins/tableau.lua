@@ -1,7 +1,7 @@
 -- return {}
 return {
   "eliseshaffer/tableau.nvim",
-  dev = "true",
+  dev = true,
   config = function()
     require('tableau').setup({
         hidden_buffer_types = {
