@@ -105,3 +105,48 @@ local opts = {
 require("lazy").setup("plugins", opts)
 
 require('keymap')
+
+vim.lsp.enable({
+    "lua",
+    "ruby-lsp",
+  })
+
+-- Native autocompletion; Should clean this up in the future
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("my.lsp", {}),
+    callback = function(args)
+        local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+        if client:supports_method("textDocument/completion") then
+            vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = false })
+        end
+        -- Auto-format ("lint") on save.
+        -- Usually not needed if server supports "textDocument/willSaveWaitUntil".
+        -- if
+        --     not client:supports_method("textDocument/willSaveWaitUntil")
+        --     and client:supports_method("textDocument/formatting")
+        -- then
+        --     vim.api.nvim_create_autocmd("BufWritePre", {
+        --         group = vim.api.nvim_create_augroup("my.lsp", { clear = false }),
+        --         buffer = args.buf,
+        --         callback = function()
+        --             vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1000 })
+        --         end,
+        --     })
+        -- end
+    end,
+})
+
+require("luasnip.loaders.from_vscode").lazy_load()
+local ls = require("luasnip")
+
+vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-J>", function() ls.jump(-1) end, {silent = true})
+
+vim.keymap.set({"i", "s"}, "<C-E>", function()
+	if ls.choice_active() then
+		ls.change_choice(1)
+	end
+end, {silent = true})
+
+vim.diagnostic.config({ virtual_text = true })
