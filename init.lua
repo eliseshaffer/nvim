@@ -96,7 +96,7 @@ local opts = {
     colorscheme = { "catppuccin-macchiato" },
   },
   dev = {
-    path = "~/code/neovim/",
+    path = "~/src/neovim/",
     pattern = "eliseshaffer",
     fallback = true,
   }
