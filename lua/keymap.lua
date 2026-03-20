@@ -52,8 +52,9 @@ key('n', '<leader>cD', ':lua vim.lsp.buf.declaration()<CR>',
 key('n', '<leader>cr', ':lua vim.lsp.buf.references()<CR>', { noremap = true, silent = true, desc = "List References" })
 key('n', '<leader>ci', ':lua vim.lsp.buf.implementation()<CR>',
   { noremap = true, silent = true, desc = "Goto Implementation" })
-key('n', '<leader>cf', ':LspZeroFormat<CR>',
-  { noremap = true, silent = true, desc = "Format File" })
+-- format command defined cia Lsp callback in init.lua
+-- key('n', '<leader>cf', ':LspZeroFormat<CR>',
+--   { noremap = true, silent = true, desc = "Format File" })
 key('n', '<C-k>', ':lua vim.diagnostic.open_float()<CR>',
   { noremap = true, silent = true, desc = "Show Line diagnostics" })
 key('n', '<leader>cm', ':Glow<CR>', { noremap = true, silent = true, desc = "Preview markdown" })
