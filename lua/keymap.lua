@@ -62,6 +62,20 @@ key('n', '<leader>cm', ':Glow<CR>', { noremap = true, silent = true, desc = "Pre
 -- key('n', '<C-]>', ':lua vim.lsp.diagnostic.goto_next()<CR>', { noremap = true, silent = true})
 -- -------------------------------------------------------------------------------------------
 
+-- Snippets
+-- -------------------------------------------------------------------------------------------
+local ls = require("luasnip")
+
+vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-J>", function() ls.jump(-1) end, {silent = true})
+
+vim.keymap.set({"i", "s"}, "<C-E>", function()
+	if ls.choice_active() then
+		ls.change_choice(1)
+	end
+end, {silent = true})
+
 -- Git Tools
 -- -------------------------------------------------------------------------------------------
 key('n', '<leader>gb', ':BlameToggle<CR>', { noremap = true, silent = true, desc = "Get Remote Link" })
