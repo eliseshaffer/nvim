@@ -44,10 +44,10 @@ vim.api.nvim_create_autocmd({ "WinLeave", "FocusLost" }, {
   command = "setlocal number norelativenumber"
 })
 
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = "*.rbs",
-  command = "setlocal ft=rbs"
-})
+-- vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+--   pattern = "*.rbs",
+--   command = "setlocal ft=rbs"
+-- })
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.code-snippets",
@@ -107,37 +107,38 @@ require("lazy").setup("plugins", opts)
 require('keymap')
 
 vim.lsp.enable({
-    "lua",
-    "ruby-lsp",
-  })
+  "lua",
+  "ruby-lsp",
+  "rubocop"
+})
 
 -- Native autocompletion; Should clean this up in the future
 vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("my.lsp", {}),
-    callback = function(args)
-        local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-        if client:supports_method("textDocument/completion") then
-            vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = false })
-        end
-        if client and client:supports_method("textDocument/formatting") then
-          vim.keymap.set("n", "<leader>cf", function()
-            vim.lsp.buf.format({ bufnr = args.buf, async = true })
-          end, { buffer = args.buf, desc = "Format buffer" })
-        end
-    end,
+  group = vim.api.nvim_create_augroup("my.lsp", {}),
+  callback = function(args)
+    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+    if client:supports_method("textDocument/completion") then
+      vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = false })
+    end
+    if client and client:supports_method("textDocument/formatting") then
+      vim.keymap.set("n", "<leader>cf", function()
+        vim.lsp.buf.format({ bufnr = args.buf, async = true })
+      end, { buffer = args.buf, desc = "Format buffer" })
+    end
+  end,
 })
 
 require("luasnip.loaders.from_vscode").lazy_load()
 local ls = require("luasnip")
 
-vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
-vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
-vim.keymap.set({"i", "s"}, "<C-J>", function() ls.jump(-1) end, {silent = true})
+vim.keymap.set({ "i" }, "<C-K>", function() ls.expand() end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-L>", function() ls.jump(1) end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-J>", function() ls.jump(-1) end, { silent = true })
 
-vim.keymap.set({"i", "s"}, "<C-E>", function()
-	if ls.choice_active() then
-		ls.change_choice(1)
-	end
-end, {silent = true})
+vim.keymap.set({ "i", "s" }, "<C-E>", function()
+  if ls.choice_active() then
+    ls.change_choice(1)
+  end
+end, { silent = true })
 
 vim.diagnostic.config({ virtual_text = true })
