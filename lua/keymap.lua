@@ -109,3 +109,18 @@ key('v', '<leader>Q', ':wqa<CR>', { noremap = true, silent = true, desc = "Save 
 -- -------------------------------------------------------------------------------------------
 key('n', '<leader>l', ':source %<CR>', { noremap = true, silent = true, desc = "Source current file" })
 -- -------------------------------------------------------------------------------------------
+
+-- Claude Code
+-- -------------------------------------------------------------------------------------------
+
+key('n', "<leader>ac", "<cmd>ClaudeCode<cr>", { noremap = true, silent = true, desc = "Toggle Claude" })
+key('n', "<leader>ac", "<cmd>ClaudeCode<cr>",  { noremap = true, silent = true,desc = "Toggle Claude" })
+key('n', "<leader>af", "<cmd>ClaudeCodeFocus<cr>",  { noremap = true, silent = true,desc = "Focus Claude" })
+key('n', "<leader>ar", "<cmd>ClaudeCode --resume<cr>",  { noremap = true, silent = true,desc = "Resume Claude" })
+key('n', "<leader>aC", "<cmd>ClaudeCode --continue<cr>",  { noremap = true, silent = true,desc = "Continue Claude" })
+key('n', "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>",  { noremap = true, silent = true,desc = "Select Claude model" })
+key('n', "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>",  { noremap = true, silent = true,desc = "Add current buffer" })
+key('v', "<leader>as", "<cmd>ClaudeCodeSend<cr>",  { noremap = true, silent = true,desc = "Send to Claude" })
+key('n', "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>",  { noremap = true, silent = true,desc = "Accept diff" })
+key('n', "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", { noremap = true, silent = true, desc = "Deny diff" })
+-- -------------------------------------------------------------------------------------------

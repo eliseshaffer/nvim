@@ -39,6 +39,7 @@ wk.setup {
 }
 
 wk.add({
+  { "<leader>a",  group = "AI/Claude" },
   { "<leader>c",  group = "Code" },
   { "<leader>d",  group = "Darklight" },
   { "<leader>f",  group = "Files" },
