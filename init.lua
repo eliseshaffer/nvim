@@ -61,7 +61,8 @@ vim.cmd([[
 vim.lsp.enable({
   "lua",
   "ruby-lsp",
-  "rubocop"
+  "rubocop",
+  "typescript-language-server",
 })
 
 -- Native autocompletion; Should clean this up in the future
