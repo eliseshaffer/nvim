@@ -1,1 +1,0 @@
-return { 'sickill/vim-pasta' }

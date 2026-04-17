@@ -44,25 +44,10 @@ vim.api.nvim_create_autocmd({ "WinLeave", "FocusLost" }, {
   command = "setlocal number norelativenumber"
 })
 
--- vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
---   pattern = "*.rbs",
---   command = "setlocal ft=rbs"
--- })
-
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.code-snippets",
   command = "setlocal ft=json"
 })
-
--- vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
---   pattern = "*.turbo_stream.erb",
---   command = "setlocal ft=eruby.html"
--- })
---
--- vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
---   pattern = "*.html.erb",
---   command = "setlocal ft=eruby.html"
--- })
 
 vim.api.nvim_create_autocmd({ "CursorHold" }, {
   pattern = "*",
@@ -72,39 +57,6 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
 vim.cmd([[
   autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'neo-tree filesystem [' . tabpagenr() . ']' | quit | endif
 ]])
-
--- -------------------------------------------------------------------------------------------
---
--- Plugin Configs
---
--- -------------------------------------------------------------------------------------------
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
-
-local opts = {
-  install = {
-    colorscheme = { "catppuccin-macchiato" },
-  },
-  dev = {
-    path = "~/src/neovim/",
-    pattern = "eliseshaffer",
-    fallback = true,
-  }
-}
-
-require("lazy").setup("plugins", opts)
-
-require('keymap')
 
 vim.lsp.enable({
   "lua",
@@ -128,17 +80,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-require("luasnip.loaders.from_vscode").lazy_load()
-local ls = require("luasnip")
-
-vim.keymap.set({ "i" }, "<C-K>", function() ls.expand() end, { silent = true })
-vim.keymap.set({ "i", "s" }, "<C-L>", function() ls.jump(1) end, { silent = true })
-vim.keymap.set({ "i", "s" }, "<C-J>", function() ls.jump(-1) end, { silent = true })
-
-vim.keymap.set({ "i", "s" }, "<C-E>", function()
-  if ls.choice_active() then
-    ls.change_choice(1)
-  end
-end, { silent = true })
-
 vim.diagnostic.config({ virtual_text = true })
+
+require('keymap')
