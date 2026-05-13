@@ -20,13 +20,14 @@ require('lualine').setup {
   options = {
     section_separators = '',
     component_separators = '',
+    theme = 'auto',
   },
   sections = {
-    lualine_a = { 'mode' },
+    lualine_a = { { 'mode', fmt = function(str) return ' ' end } },
     lualine_b = { 'branch', 'diff' },
     lualine_c = { 'filename' },
     lualine_x = { 'filetype' },
     lualine_y = { 'diagnostics', lsp_status },
-    lualine_z = { 'progress', 'location' }
+    lualine_z = { 'location' }
   },
 }
